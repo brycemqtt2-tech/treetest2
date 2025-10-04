@@ -30,6 +30,12 @@
       gap: 1em;
     }
 
+    .arrow {
+      font-size: 1.3em;
+      cursor: pointer;
+      margin-right: 0.5em;
+    }
+
     header a {
       color: white;
       text-decoration: none;
@@ -60,18 +66,13 @@
       padding: 0.5em;
       font-size: 0.9em;
     }
-
-    .arrow {
-      font-size: 1.3em;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
   <header>
     <div class="left">
-      <span style="font-size: 1.3em; font-weight: bold;">My Simple Website</span>
-      <a href="#" id="homeButton" onclick="showPage('home')">Home</a>
+      <span id="arrow" class="arrow" style="display:none;" onclick="showPage('home')">←</span>
+      <span id="siteName" style="font-size: 1.3em; font-weight: bold;">My Simple Website</span>
     </div>
     <div class="right">
       <a href="#" onclick="showPage('about')">About</a>
@@ -93,15 +94,16 @@
   <footer>© 2025 My Simple Website</footer>
 
   <script>
+    const arrow = document.getElementById('arrow');
+
     function showPage(pageId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
 
-      const homeBtn = document.getElementById('homeButton');
       if (pageId === 'about') {
-        homeBtn.innerHTML = '←';
+        arrow.style.display = 'inline';
       } else {
-        homeBtn.innerHTML = 'Home';
+        arrow.style.display = 'none';
       }
     }
   </script>
