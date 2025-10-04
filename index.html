@@ -181,7 +181,6 @@ footer {
 .connect-bubble-expanded:hover {
   transform: scale(1.05);
 }
-
 .connect-bubble-expanded .contact-label {
   font-weight: 700;
   text-transform: uppercase;
@@ -189,7 +188,7 @@ footer {
   text-align: center;
 }
 
-/* Ripple overlay styling */
+/* Ripple overlay / Full contact page */
 #ripple-overlay {
   position: fixed;
   top: 0; left: 0;
@@ -200,23 +199,43 @@ footer {
   background: white;
   opacity: 0;
   transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: width 1s, height 1s, border-radius 1s, opacity 1s;
 }
 
-/* Ripple animation keyframes */
-@keyframes rippleEffect {
-  0% {
-    width: 0; height: 0;
-    opacity: 1;
-    background: white;
-  }
-  50% {
-    background: #888;
-  }
-  100% {
-    width: 300vmax; height: 300vmax;
-    opacity: 1;
-    background: black;
-  }
+/* When overlay is active */
+#ripple-overlay.show {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  opacity: 1;
+  pointer-events: auto;
+  background: black;
+}
+
+.contact-columns {
+  display: flex;
+  width: 80%;
+  max-width: 900px;
+  justify-content: space-between;
+  color: white;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.5s 1s; /* fade in after ripple */
+}
+
+#ripple-overlay.show .contact-columns {
+  opacity: 1;
+}
+
+.contact-left, .contact-right {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
 }
 </style>
 </head>
@@ -256,13 +275,24 @@ footer {
 </section>
 </main>
 
-<!-- Contact Panel -->
+<!-- Contact Bubble -->
 <div class="connect-bubble-expanded" onclick="rippleTransition()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Ripple Overlay -->
-<div id="ripple-overlay"></div>
+<!-- Ripple Overlay / Full contact page -->
+<div id="ripple-overlay">
+  <div class="contact-columns">
+    <div class="contact-left">
+      <h2>Email</h2>
+      <p>contact@trident.com</p>
+    </div>
+    <div class="contact-right">
+      <h2>Phone</h2>
+      <p>888-888-8888</p>
+    </div>
+  </div>
+</div>
 
 <footer>© 2025 Trident</footer>
 
@@ -284,11 +314,14 @@ function rippleTransition() {
 
   overlay.style.left = centerX + 'px';
   overlay.style.top = centerY + 'px';
+  overlay.style.width = overlay.style.height = '0px';
+  overlay.style.borderRadius = '50%';
   overlay.style.opacity = 1;
-  overlay.style.width = '0px';
-  overlay.style.height = '0px';
 
-  overlay.style.animation = 'rippleEffect 1s forwards ease-out';
+  // expand ripple
+  setTimeout(()=>{
+    overlay.classList.add('show');
+  }, 10);
 }
 </script>
 
