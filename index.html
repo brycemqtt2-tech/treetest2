@@ -29,7 +29,7 @@
       letter-spacing: 2px;
       position: relative;
       height: 80px; /* fixed header height */
-      overflow: hidden; /* ensures logo doesn't push header taller */
+      overflow: hidden;
     }
 
     header a {
@@ -50,13 +50,13 @@
       background-color: rgba(255,255,255,0.1);
     }
 
-    /* Stretched logo */
+    /* Slightly stretched logo */
     header .logo {
-      width: 100%;        /* fill header width */
-      height: 100%;       /* keep within header height */
-      object-fit: cover;  /* stretch and crop if needed */
+      height: 80px;       /* fits header */
+      width: 250px;       /* slightly wider */
       cursor: pointer;
       display: block;
+      margin: 0 auto;
     }
 
     main {
@@ -160,7 +160,7 @@
 <body>
 
   <header>
-    <!-- Stretched logo -->
+    <!-- Slightly stretched logo -->
     <img src="images/trident.png" alt="Trident Logo" class="logo" onclick="showPage('home')">
     <a style="right:2em;" onclick="showPage('about')">About</a>
     <a style="right:8em;" onclick="showPage('contact')">Contact</a>
