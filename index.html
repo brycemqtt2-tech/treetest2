@@ -24,7 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 2px solid gold; /* gold line under header */
+  border-bottom: 2px solid gold;
 }
 
 .logo-container {
@@ -157,6 +157,7 @@ footer {
   font-size:1em;
   color:#c0c0c0;
   text-transform:uppercase;
+  border-top: 2px solid gold;
 }
 
 /* Contact Bubble */
@@ -175,7 +176,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 2px solid gold; /* gold outline */
+  border: 1.5px solid gold;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -189,34 +190,42 @@ footer {
   text-align: center;
 }
 
-/* Pop-up box */
-#popup-box {
-  position: fixed;
-  bottom: 90px;
+/* Pop-up Box */
+.connect-popup {
+  position: absolute;
+  bottom: 80px; /* above the bubble */
   right: 20px;
-  width: 320px;  /* wider */
-  height: 300px; /* taller */
-  background: rgba(173, 216, 230, 0.9); /* baby blue tint */
+  width: 480px;   /* wider */
+  height: 600px;  /* taller */
+  background: rgba(173, 216, 230, 0.4); /* baby blue with transparency */
+  backdrop-filter: blur(10px); /* blurry effect */
   border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  z-index: 1500;
-  display: none; /* hidden until click */
-  flex-direction: row;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+  z-index: 1001;
+  display: none; /* shows only on click */
+  flex-direction: row; /* 2 columns */
   padding: 20px;
-  gap: 20px;
+  justify-content: space-between;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
 }
-.popup-column {
+.connect-popup .column {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #0a0c12;
-  font-weight: 700;
-  font-size: 1.2em;
+  align-items: center;
 }
-.popup-column h2 {
+.connect-popup .column h2 {
   margin-bottom: 10px;
+  letter-spacing: 1px;
 }
+.connect-popup .column p {
+  margin:0;
+  font-size:1.2em;
+}
+
 </style>
 </head>
 <body>
@@ -261,12 +270,12 @@ footer {
 </div>
 
 <!-- Pop-up Box -->
-<div id="popup-box">
-  <div class="popup-column">
+<div class="connect-popup" id="connectPopup">
+  <div class="column">
     <h2>Email</h2>
     <p>contact@trident.com</p>
   </div>
-  <div class="popup-column">
+  <div class="column">
     <h2>Phone</h2>
     <p>888-888-8888</p>
   </div>
@@ -282,7 +291,7 @@ function showPage(pageId){
 }
 
 function togglePopup() {
-  const popup = document.getElementById('popup-box');
+  const popup = document.getElementById('connectPopup');
   if (popup.style.display === 'flex') {
     popup.style.display = 'none';
   } else {
