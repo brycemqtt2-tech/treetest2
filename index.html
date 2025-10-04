@@ -24,7 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 1.5px solid gold; /* kept gold border under header */
+  border-bottom: 2px solid gold;
 }
 
 .logo-container {
@@ -157,6 +157,7 @@ footer {
   font-size:1em;
   color:#c0c0c0;
   text-transform:uppercase;
+  border-top: 2px solid gold;
 }
 
 /* Contact Bubble */
@@ -166,7 +167,7 @@ footer {
   right: 20px;
   width: 160px;
   height: auto;
-  background: rgba(0,0,0,0.7);
+  background: rgba(255,255,255,0.1); /* translucent without blur */
   border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   z-index: 1000;
@@ -174,7 +175,6 @@ footer {
   flex-direction: column;
   align-items: center;
   padding: 15px;
-  backdrop-filter: blur(5px);
   border: 1.5px solid gold;
   cursor: pointer;
   transition: transform 0.2s;
@@ -189,56 +189,40 @@ footer {
   text-align: center;
 }
 
-/* Pop-up Box */
-#popup-box {
+/* Contact Popup Box */
+#contact-box {
   position: fixed;
-  bottom: 90px;
+  bottom: 70px;
   right: 20px;
-  width: 480px; /* 1.5x wider */
-  height: 480px; /* 2x taller */
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(10px);
+  width: 360px;
+  height: 320px;
+  background: rgba(255,255,255,0.05); /* subtle transparent */
   display: none;
-  flex-direction: column;
-  padding: 20px;
-  z-index: 1001;
-  color: white;
-}
-
-/* Pop-up Columns */
-.popup-columns {
+  z-index: 1500;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   display: flex;
+  padding: 20px;
+  color: white;
+  flex-direction: row;
   justify-content: space-between;
-  height: 100%;
-  align-items: center;
 }
-.popup-left, .popup-right {
-  flex: 1;
-  text-align: center;
+#contact-box .column {
+  width: 48%;
 }
-.popup-divider {
-  width: 1px;
+#contact-box .divider {
+  width: 2px;
   background: rgba(255,255,255,0.25);
-  margin: 0 10px;
 }
 
-/* Close X button (Twitter style) */
-#popup-close {
+/* Close button */
+#contact-box .close-btn {
   position: absolute;
   top: 10px;
   left: 10px;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 1.5em;
   font-weight: 700;
+  font-size: 1.5em;
   cursor: pointer;
-  line-height: 1;
-  padding: 0;
-  transition: transform 0.2s;
-}
-#popup-close:hover {
-  transform: rotate(90deg);
+  color: white;
 }
 </style>
 </head>
@@ -279,23 +263,21 @@ footer {
 </main>
 
 <!-- Contact Bubble -->
-<div class="connect-bubble-expanded" onclick="showPopup()">
+<div class="connect-bubble-expanded" onclick="showContactBox()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Pop-up Box -->
-<div id="popup-box">
-  <button id="popup-close" onclick="closePopup()">×</button>
-  <div class="popup-columns">
-    <div class="popup-left">
-      <h2>Email</h2>
-      <p>contact@trident.com</p>
-    </div>
-    <div class="popup-divider"></div>
-    <div class="popup-right">
-      <h2>Phone</h2>
-      <p>888-888-8888</p>
-    </div>
+<!-- Popup Contact Box -->
+<div id="contact-box">
+  <div class="close-btn" onclick="closeContactBox()">×</div>
+  <div class="column">
+    <h3>Email</h3>
+    <p>contact@trident.com</p>
+  </div>
+  <div class="divider"></div>
+  <div class="column">
+    <h3>Phone</h3>
+    <p>888-888-8888</p>
   </div>
 </div>
 
@@ -308,12 +290,12 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function showPopup() {
-  document.getElementById('popup-box').style.display = 'flex';
+function showContactBox() {
+  document.getElementById('contact-box').style.display = 'flex';
 }
 
-function closePopup() {
-  document.getElementById('popup-box').style.display = 'none';
+function closeContactBox() {
+  document.getElementById('contact-box').style.display = 'none';
 }
 </script>
 
