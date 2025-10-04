@@ -20,7 +20,7 @@
     header {
       background-color: rgba(0, 25, 75, 0.95);
       display: flex;
-      justify-content: center;
+      justify-content: space-between; /* logo left, links right */
       align-items: center;
       padding: 0 2em;
       font-size: 1.5em;
@@ -29,7 +29,26 @@
       letter-spacing: 2px;
       position: relative;
       height: 80px; /* fixed header height */
-      overflow: hidden;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .logo-text .title {
+      font-size: 1.8em;
+      font-weight: 900;
+      margin: 0;
+    }
+
+    .logo-text .subtitle {
+      font-size: 0.9em;
+      font-weight: 400;
+      text-transform: none; /* normal text */
+      margin: 0;
+      line-height: 1em;
     }
 
     header a {
@@ -43,20 +62,11 @@
       font-size: 0.9em;
       background-color: transparent;
       cursor: pointer;
-      position: absolute;
+      margin-left: 1em;
     }
 
     header a:hover {
       background-color: rgba(255,255,255,0.1);
-    }
-
-    /* Slightly stretched logo */
-    header .logo {
-      height: 80px;       /* fits header */
-      width: 250px;       /* slightly wider */
-      cursor: pointer;
-      display: block;
-      margin: 0 auto;
     }
 
     main {
@@ -160,15 +170,21 @@
 <body>
 
   <header>
-    <!-- Slightly stretched logo -->
-    <img src="images/trident.png" alt="Trident Logo" class="logo" onclick="showPage('home')">
-    <a style="right:2em;" onclick="showPage('about')">About</a>
-    <a style="right:8em;" onclick="showPage('contact')">Contact</a>
+    <!-- Text logo on left -->
+    <div class="logo-text" onclick="showPage('home')">
+      <p class="title">TRIDENT</p>
+      <p class="subtitle">Pierce the competition.</p>
+    </div>
+
+    <!-- Header links on right -->
+    <div>
+      <a onclick="showPage('about')">About</a>
+      <a onclick="showPage('contact')">Contact</a>
+    </div>
   </header>
 
   <main>
     <section id="home" class="active">
-      <!-- Keep the three sentences -->
       <p>JOIN TRIDENT. CONNECT WITH ELITE OPPORTUNITIES. ACHIEVE YOUR MISSION.</p>
       <a class="signup-button" onclick="showPage('about')">Learn More / Sign Up</a>
     </section>
