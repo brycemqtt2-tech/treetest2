@@ -28,54 +28,36 @@
       position: relative;
     }
 
-    /* Header left logo container with PTC */
-    .logo-container {
-      display: flex;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    /* Main TRIDENT text block */
+    /* Logo text block */
     .logo-text {
       display: flex;
       flex-direction: column;
+      cursor: pointer;
+      align-items: flex-start; /* left-align text */
     }
 
     .logo-text .title {
       font-size: 2em;
-      font-weight: 1000;
+      font-weight: 1000; /* ultra bold */
       margin: 0;
       letter-spacing: 2px;
+    }
+
+    .logo-text .divider {
+      border: none;
+      height: 1px; /* thin line */
+      background-color: #f0f0f0;
+      margin: 4px 0; /* spacing between title and subtitle */
+      width: 100%;
+      align-self: flex-start; /* line perfectly aligns with text */
     }
 
     .logo-text .subtitle {
       font-size: 0.8em;
       font-weight: 700;
-      text-transform: capitalize;
+      text-transform: capitalize; /* P T C capitalized */
       margin: 0;
       line-height: 1em;
-    }
-
-    /* Vertical divider line */
-    .divider-vertical {
-      width: 2px;
-      height: 50px;
-      background-color: #f0f0f0;
-      margin: 0 10px;
-    }
-
-    /* Vertical PTC letters */
-    .ptc-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: center;
-      font-weight: 700;
-    }
-
-    .ptc-text p {
-      margin: 0;
-      font-size: 1em;
     }
 
     /* Header links */
@@ -197,21 +179,14 @@
 <body>
 
   <header>
-    <!-- Logo and PTC block -->
-    <div class="logo-container" onclick="showPage('home')">
-      <div class="logo-text">
-        <p class="title">TRIDENT</p>
-        <p class="subtitle">Pierce The Competition</p>
-      </div>
-      <div class="divider-vertical"></div>
-      <div class="ptc-text">
-        <p>P</p>
-        <p>T</p>
-        <p>C</p>
-      </div>
+    <!-- Logo text with subtitle -->
+    <div class="logo-text" onclick="showPage('home')">
+      <p class="title">TRIDENT</p>
+      <hr class="divider">
+      <p class="subtitle">Pierce The Competition</p>
     </div>
 
-    <!-- Header links on right -->
+    <!-- Header links -->
     <div class="header-links">
       <a onclick="showPage('about')">About</a>
       <a onclick="showPage('contact')">Contact</a>
