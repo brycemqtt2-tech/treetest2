@@ -198,11 +198,20 @@ footer {
   height: 480px;
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
-  display: none;
+  display: flex;
   flex-direction: column;
   padding: 20px;
   z-index: 1001;
   color: white;
+
+  /* New for scale animation */
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: transform 0.4s ease-out;
+}
+
+#popup-box.show {
+  transform: scale(1);
 }
 
 /* Pop-up Columns */
@@ -309,11 +318,15 @@ function showPage(pageId){
 }
 
 function showPopup() {
-  document.getElementById('popup-box').style.display = 'flex';
+  const popup = document.getElementById('popup-box');
+  popup.style.display = 'flex';          // make visible
+  setTimeout(() => popup.classList.add('show'), 10); // start scale animation
 }
 
 function closePopup() {
-  document.getElementById('popup-box').style.display = 'none';
+  const popup = document.getElementById('popup-box');
+  popup.classList.remove('show');        // start shrinking
+  setTimeout(() => popup.style.display = 'none', 400); // hide after animation
 }
 </script>
 
