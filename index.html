@@ -28,7 +28,7 @@
       position: relative;
     }
 
-    /* Logo container with TRIDENT and subtitle to the right */
+    /* Logo container with TRIDENT and subtitle */
     .logo-container {
       display: flex;
       align-items: center;
@@ -42,11 +42,19 @@
       letter-spacing: 2px;
     }
 
+    /* Subtitle split into two lines */
     .logo-container .subtitle {
-      font-size: 0.9em;
-      font-weight: 700;
+      display: flex;
+      flex-direction: column;
       margin-left: 15px; /* spacing between TRIDENT and subtitle */
+      font-weight: 700;
       text-transform: capitalize;
+    }
+
+    .logo-container .subtitle p {
+      margin: 0;
+      font-size: 0.9em;
+      line-height: 1em;
     }
 
     /* Header links */
@@ -168,10 +176,13 @@
 <body>
 
   <header>
-    <!-- Logo with TRIDENT and subtitle to the right -->
+    <!-- Logo with TRIDENT and two-line subtitle -->
     <div class="logo-container" onclick="showPage('home')">
       <p class="title">TRIDENT</p>
-      <p class="subtitle">Pierce The Competition</p>
+      <div class="subtitle">
+        <p>Pierce The</p>
+        <p>Competition</p>
+      </div>
     </div>
 
     <!-- Header links -->
