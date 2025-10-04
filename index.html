@@ -121,7 +121,7 @@ section.active {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px; /* adjust for fade height */
+  height: 200px;
   background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
   z-index: 1;
   pointer-events: none;
@@ -174,7 +174,12 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid rgba(255,255,255,0.25); /* faded white border */
+  border: 1.5px solid rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.connect-bubble-expanded:hover {
+  transform: scale(1.05);
 }
 
 .connect-bubble-expanded .contact-label {
@@ -182,6 +187,36 @@ footer {
   text-transform: uppercase;
   font-size: 0.95em;
   text-align: center;
+}
+
+/* Ripple overlay styling */
+#ripple-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2000;
+  background: white;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* Ripple animation keyframes */
+@keyframes rippleEffect {
+  0% {
+    width: 0; height: 0;
+    opacity: 1;
+    background: white;
+  }
+  50% {
+    background: #888;
+  }
+  100% {
+    width: 300vmax; height: 300vmax;
+    opacity: 1;
+    background: black;
+  }
 }
 </style>
 </head>
@@ -222,9 +257,12 @@ footer {
 </main>
 
 <!-- Contact Panel -->
-<div class="connect-bubble-expanded">
+<div class="connect-bubble-expanded" onclick="rippleTransition()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
+
+<!-- Ripple Overlay -->
+<div id="ripple-overlay"></div>
 
 <footer>© 2025 Trident</footer>
 
@@ -233,6 +271,24 @@ function showPage(pageId){
   document.querySelectorAll('section').forEach(sec=>sec.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   window.scrollTo(0,0);
+}
+
+// Ripple transition
+function rippleTransition() {
+  const bubble = document.querySelector('.connect-bubble-expanded');
+  const overlay = document.getElementById('ripple-overlay');
+
+  const rect = bubble.getBoundingClientRect();
+  const centerX = rect.left + rect.width/2;
+  const centerY = rect.top + rect.height/2;
+
+  overlay.style.left = centerX + 'px';
+  overlay.style.top = centerY + 'px';
+  overlay.style.opacity = 1;
+  overlay.style.width = '0px';
+  overlay.style.height = '0px';
+
+  overlay.style.animation = 'rippleEffect 1s forwards ease-out';
 }
 </script>
 
