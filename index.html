@@ -193,26 +193,26 @@ footer {
 /* Pop-up Box */
 #popup-box {
   position: fixed;
-  bottom: 20px; /* start near the button */
+  bottom: 20px;
   right: 20px;
   width: 480px;
-  height: 0; /* collapsed initially */
+  height: 0; /* collapsed */
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
-  display: flex;
+  display: none; /* HIDDEN initially */
   flex-direction: column;
   padding: 20px;
   z-index: 1001;
   color: white;
   overflow: hidden;
-  transition: height 0.25s ease-out; /* smooth growth */
+  transition: height 0.25s ease-out;
 }
 
-/* When showing the box */
 #popup-box.show {
-  height: 480px; /* full expanded height */
+  display: flex; /* show when triggered */
+  height: 480px;
 }
-
+  
 /* Pop-up Columns – content hidden initially */
 .popup-columns {
   display: flex;
@@ -362,28 +362,28 @@ function showPage(pageId){
 
 function showPopup() {
   const popup = document.getElementById('popup-box');
-  popup.style.display = 'flex';
-  
-  // trigger growth
-  setTimeout(() => {
-    popup.classList.add('show');
-  }, 10); // tiny delay to let display apply
+  popup.style.display = 'flex'; // show
+  popup.style.height = '0';     // start collapsed
 
-  // fade in content after growth
+  // trigger expansion in next tick
+  setTimeout(() => {
+    popup.style.height = '480px'; // grow to full height
+  }, 10);
+
+  // fade in content after box grows
   setTimeout(() => {
     popup.querySelector('.popup-columns').style.opacity = 1;
-  }, 250); // matches height transition
+  }, 250);
 }
 
 function closePopup() {
   const popup = document.getElementById('popup-box');
-  popup.querySelector('.popup-columns').style.opacity = 0; // hide content
-  popup.classList.remove('show'); // collapse box
+  popup.querySelector('.popup-columns').style.opacity = 0;
+  popup.style.height = '0';
 
   setTimeout(() => {
     popup.style.display = 'none';
-  }, 250); // matches transition
-}
+  }, 250);
 
 </script>
 
