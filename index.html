@@ -112,15 +112,15 @@ section.active {
   z-index: 0;
 }
 
-/* Bottom fade overlay */
+/* Bottom fade overlay - more intense */
 #home::after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 200px; /* adjust for fade height */
-  background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+  height: 300px; /* taller fade */
+  background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0.3));
   z-index: 1;
   pointer-events: none;
 }
