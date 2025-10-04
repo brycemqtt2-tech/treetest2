@@ -15,7 +15,6 @@ body {
   flex-direction:column;
   background:#0a0c12;
 }
-
 header {
   background:rgba(5,10,25,0.95);
   display:flex;
@@ -25,48 +24,12 @@ header {
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
 }
-
-.logo-container {
-  display:flex;
-  align-items:center;
-  cursor:pointer;
-}
-.logo-container .title {
-  font-size:2em;
-  font-weight:1000;
-  margin:0;
-  letter-spacing:2px;
-}
-.logo-container .subtitle {
-  display:flex;
-  flex-direction:column;
-  margin-left:15px;
-  font-weight:700;
-  text-transform:capitalize;
-}
-.logo-container .subtitle p {
-  margin:0;
-  font-size:.9em;
-  line-height:1em;
-}
-
-.header-links a {
-  color:#f0f0f0;
-  text-decoration:none;
-  font-weight:700;
-  padding:.3em .8em;
-  border-radius:4px;
-  transition:background .3s;
-  text-transform:uppercase;
-  font-size:.9em;
-  background:transparent;
-  cursor:pointer;
-  margin-left:1em;
-}
-.header-links a:hover {
-  background:rgba(255,255,255,.1);
-}
-
+.logo-container { display:flex; align-items:center; cursor:pointer }
+.logo-container .title { font-size:2em; font-weight:1000; margin:0; letter-spacing:2px }
+.logo-container .subtitle { display:flex; flex-direction:column; margin-left:15px; font-weight:700; text-transform:capitalize }
+.logo-container .subtitle p { margin:0; font-size:.9em; line-height:1em }
+.header-links a { color:#f0f0f0; text-decoration:none; font-weight:700; padding:.3em .8em; border-radius:4px; transition:background .3s; text-transform:uppercase; font-size:.9em; background:transparent; cursor:pointer; margin-left:1em }
+.header-links a:hover { background:rgba(255,255,255,.1) }
 main {
   flex:1;
   display:flex;
@@ -76,7 +39,6 @@ main {
   text-align:center;
   position:relative;
 }
-
 section {
   display:none;
   width:100%;
@@ -85,17 +47,7 @@ section {
   box-sizing:border-box;
   color:white;
 }
-
-section.active {
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:flex-end;
-  text-align:left;
-  position:relative;
-}
-
-/* Homepage background */
+section.active { display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end; text-align:left; position:relative; }
 #home {
   position: relative;
   background-image: url('images/submarine.png');
@@ -114,16 +66,13 @@ section.active {
 #home::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
+  bottom: 0; left: 0;
   width: 100%;
   height: 200px;
   background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
   z-index: 1;
   pointer-events: none;
 }
-
-/* Homepage text stacked bottom-left */
 .home-text {
   position: absolute;
   bottom: 40px;
@@ -138,13 +87,7 @@ section.active {
   text-transform:uppercase;
   letter-spacing:1px;
 }
-
-#about h1, #contact h1 {
-  margin-bottom:1em;
-  font-size:2.5em;
-  letter-spacing:2px;
-}
-
+#about h1, #contact h1 { margin-bottom:1em; font-size:2.5em; letter-spacing:2px }
 footer {
   background:rgba(5,10,25,.95);
   text-align:center;
@@ -153,9 +96,8 @@ footer {
   color:#c0c0c0;
   text-transform:uppercase;
 }
-
 /* Contact Bubble */
-.connect-bubble-expanded {
+.connect-bubble {
   position: fixed;
   bottom: 20px;
   right: 20px;
@@ -173,8 +115,7 @@ footer {
   z-index: 1000;
   border: 1px solid rgba(255,255,255,0.3);
 }
-
-/* Square Overlay */
+/* Overlay squares */
 #square-overlay {
   position: fixed;
   bottom: 20px;
@@ -198,10 +139,7 @@ footer {
 #square-overlay.show .square {
   animation: expandSquare 0.5s forwards;
 }
-@keyframes expandSquare {
-  to { transform: scale(50); }
-}
-
+@keyframes expandSquare { to { transform: scale(50); } }
 /* Contact Columns */
 .contact-columns {
   display: none;
@@ -217,19 +155,8 @@ footer {
   gap: 100px;
   color: white;
 }
-
-.contact-columns.active {
-  display: flex;
-}
-
-.contact-left, .contact-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.5em;
-  font-weight: 700;
-}
-
+.contact-columns.active { display: flex; }
+.contact-left, .contact-right { display: flex; flex-direction: column; align-items: center; font-size: 1.5em; font-weight: 700; }
 /* Return X */
 #return-btn {
   display: none;
@@ -244,9 +171,7 @@ footer {
   cursor: pointer;
   z-index: 2200;
 }
-#return-btn.active {
-  display: block;
-}
+#return-btn.active { display: block; }
 </style>
 </head>
 <body>
@@ -277,18 +202,10 @@ footer {
 <h1>About Trident</h1>
 <p>TRIDENT PROVIDES TOP TALENT TO LEADING ORGANIZATIONS. PROFESSIONAL. RELIABLE. EFFECTIVE.</p>
 </section>
-
-<section id="contact">
-<h1>Contact</h1>
-<p class="contact-info"><strong>Carson Ells</strong>: 888-888-8888</p>
-<p class="contact-info"><strong>Bryce Matthews</strong>: 888-888-8888</p>
-</section>
 </main>
 
 <!-- Bubble -->
-<div class="connect-bubble-expanded" onclick="openSquares()">
-  Get In Touch
-</div>
+<div class="connect-bubble" onclick="openSquares()">Get In Touch</div>
 
 <!-- Overlay -->
 <div id="square-overlay"></div>
@@ -336,7 +253,6 @@ function openSquares(){
   }
   overlay.classList.add('show');
 
-  // Show contact columns and return button after animation
   setTimeout(()=>{
     columns.classList.add('active');
     returnBtn.classList.add('active');
