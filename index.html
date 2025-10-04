@@ -189,26 +189,42 @@ footer {
   text-align: center;
 }
 
-/* Popup box */
+/* Popup box with 2 columns */
 .popup-box {
   position: fixed;
   bottom: 100px;
   right: 20px;
-  width: 240px;
-  height: 220px;
+  width: 360px;
+  height: 260px;
   background: rgba(173,216,230,0.15);
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.4);
   display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   color: white;
   font-size: 1em;
   backdrop-filter: blur(6px);
+  padding: 20px;
+  box-sizing: border-box;
 }
 .popup-box.active {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.popup-box .column {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.popup-box h2 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #b0d8ff;
+}
+.popup-box p {
+  margin: 0;
+  font-weight: 600;
 }
 </style>
 </head>
@@ -240,12 +256,6 @@ footer {
     <h1>About Trident</h1>
     <p>TRIDENT PROVIDES TOP TALENT TO LEADING ORGANIZATIONS. PROFESSIONAL. RELIABLE. EFFECTIVE.</p>
   </section>
-
-  <section id="contact">
-    <h1>Contact</h1>
-    <p class="contact-info"><strong>Carson Ells</strong>: 888-888-8888</p>
-    <p class="contact-info"><strong>Bryce Matthews</strong>: 888-888-8888</p>
-  </section>
 </main>
 
 <!-- Contact Bubble -->
@@ -255,8 +265,16 @@ footer {
 
 <!-- Popup Box -->
 <div class="popup-box" id="popup-box">
-  <p>Email: contact@trident.com</p>
-  <p>Phone: 888-888-8888</p>
+  <div class="column">
+    <h2>Email</h2>
+    <p>contact@trident.com</p>
+    <p>support@trident.com</p>
+  </div>
+  <div class="column">
+    <h2>Phone</h2>
+    <p>888-888-8888</p>
+    <p>877-777-7777</p>
+  </div>
 </div>
 
 <footer>© 2025 Trident</footer>
