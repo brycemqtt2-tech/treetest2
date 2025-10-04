@@ -28,7 +28,7 @@
       position: relative;
     }
 
-    /* Logo text like NAVY font */
+    /* Logo text like NAVY font with thin line */
     .logo-text {
       display: flex;
       flex-direction: column;
@@ -37,9 +37,17 @@
 
     .logo-text .title {
       font-size: 2em;
-      font-weight: 900; /* very bold, like NAVY */
+      font-weight: 1000; /* very bold */
       margin: 0;
       letter-spacing: 2px;
+    }
+
+    .logo-text .divider {
+      border: none;
+      height: 1px;
+      background-color: #f0f0f0;
+      margin: 2px 0;
+      width: 100%;
     }
 
     .logo-text .subtitle {
@@ -168,10 +176,11 @@
 <body>
 
   <header>
-    <!-- Text logo on left -->
+    <!-- Bold TRIDENT with divider and subtitle -->
     <div class="logo-text" onclick="showPage('home')">
       <p class="title">TRIDENT</p>
-      <p class="subtitle">Pierce The Competition.</p>
+      <hr class="divider">
+      <p class="subtitle">Pierce The Competition</p>
     </div>
 
     <!-- Header links on right -->
@@ -205,7 +214,7 @@
     function showPage(pageId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      window.scrollTo(0,0); 
+      window.scrollTo(0,0);
     }
   </script>
 
