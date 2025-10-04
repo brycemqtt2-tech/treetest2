@@ -24,7 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 2px solid gold; /* gold line below header */
+  border-bottom: 2px solid gold;
 }
 
 .logo-container {
@@ -175,7 +175,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid gold;
+  border: 1.5px solid rgba(255,255,255,0.25);
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -189,42 +189,40 @@ footer {
   text-align: center;
 }
 
-/* Pop-up box */
+/* Pop-up box grows from button */
 .connect-popup {
-  background: rgba(255, 255, 255, 0.1);
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: 30px;
-  display: none; /* hidden initially */
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
   position: absolute;
   bottom: 80px;
   right: 20px;
-  width: 600px;  /* wider */
-  height: 400px; /* taller */
-  border-radius: 0; /* no rounded corners */
-  backdrop-filter: blur(8px);
-  transform-origin: bottom right;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  width: 600px;
+  height: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 30px;
+  flex-direction: row;
+  border-radius: 0;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
 }
-
+.connect-popup.show {
+  transform: scaleY(1);
+  opacity: 1;
+}
 .connect-popup .column {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-left: 1px solid rgba(255,255,255,0.3); /* divider between columns */
+  border-right: 1px solid rgba(255,255,255,0.3);
 }
-.connect-popup .column:first-child {
-  border-left: none;
-}
-.connect-popup h2, .connect-popup p {
-  margin: 0.5em 0;
-  font-weight: 700;
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
+.connect-popup .column:last-child {
+  border-right: none;
 }
 </style>
 </head>
@@ -292,7 +290,7 @@ function showPage(pageId){
 
 function togglePopup() {
   const popup = document.getElementById('popup-box');
-  popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+  popup.classList.toggle('show');
 }
 </script>
 
