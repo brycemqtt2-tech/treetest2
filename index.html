@@ -63,9 +63,7 @@ header {
   cursor:pointer;
   margin-left:1em;
 }
-.header-links a:hover {
-  background:rgba(255,255,255,.1);
-}
+.header-links a:hover { background:rgba(255,255,255,.1); }
 
 main {
   flex:1;
@@ -103,8 +101,6 @@ section.active {
   background-position: center;
   background-repeat: no-repeat;
 }
-
-/* Subtle black overlay */
 #home::before {
   content: "";
   position: absolute;
@@ -113,15 +109,11 @@ section.active {
   background-color: rgba(0,0,0,0.6);
   z-index: 0;
 }
-
-/* Bottom fade overlay */
 #home::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
+  bottom: 0; left: 0;
+  width: 100%; height: 200px;
   background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
   z-index: 1;
   pointer-events: none;
@@ -158,7 +150,7 @@ footer {
   text-transform:uppercase;
 }
 
-/* Contact Bubble */
+/* Connect Bubble */
 .connect-bubble-expanded {
   position: fixed;
   bottom: 20px;
@@ -178,9 +170,7 @@ footer {
   cursor: pointer;
   transition: transform 0.2s;
 }
-.connect-bubble-expanded:hover {
-  transform: scale(1.05);
-}
+.connect-bubble-expanded:hover { transform: scale(1.05); }
 .connect-bubble-expanded .contact-label {
   font-weight: 700;
   text-transform: uppercase;
@@ -188,57 +178,63 @@ footer {
   text-align: center;
 }
 
-/* Full-page overlay expanding from bottom-right */
-#ripple-overlay {
+/* Square Expansion Overlay */
+#square-overlay {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 0;
-  height: 0;
-  background: black;
+  width: 160px;
+  height: 160px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  gap: 2px;
   z-index: 2000;
-  clip-path: circle(0 at bottom right);
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: clip-path 0.8s ease-out, width 0s, height 0s;
+  pointer-events: none;
 }
 
-/* When active, cover whole page */
-#ripple-overlay.show {
-  bottom:0;
-  right:0;
-  width:100vw;
-  height:100vh;
-  clip-path: circle(150vw at bottom right);
+#square-overlay .square {
+  background: black;
+  width: 100%;
+  height: 100%;
+  transform: scale(0);
+  transform-origin: bottom right;
+}
+
+#square-overlay.show .square {
+  animation: expandSquare 0.8s forwards;
+}
+
+@keyframes expandSquare {
+  to { transform: scale(50); }
 }
 
 /* Contact columns inside overlay */
 .contact-columns {
-  opacity: 0;
-  transition: opacity 0.5s 0.8s;
-  width: 80%;
-  max-width: 900px;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  max-width: 900px;
   color: white;
   font-size: 1.5em;
   font-weight: 700;
   text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 0.5s 0.8s;
+  z-index: 2100;
 }
 
-#ripple-overlay.show .contact-columns {
+#square-overlay.show + .contact-columns {
   opacity: 1;
 }
 
 /* Minimalistic X Return button */
 #return-btn {
-  position: absolute;
+  position: fixed;
   top: 20px;
   left: 20px;
   background: transparent;
@@ -249,10 +245,10 @@ footer {
   cursor: pointer;
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: 2100;
+  z-index: 2200;
 }
 
-#ripple-overlay.show #return-btn {
+#square-overlay.show ~ #return-btn {
   opacity: 1;
 }
 </style>
@@ -293,25 +289,45 @@ footer {
 </section>
 </main>
 
-<!-- Contact Bubble -->
-<div class="connect-bubble-expanded" onclick="rippleTransition()">
+<!-- Connect Bubble -->
+<div class="connect-bubble-expanded" onclick="expandSquares()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Full-page overlay -->
-<div id="ripple-overlay">
-  <button id="return-btn" onclick="closeOverlay()">×</button>
-  <div class="contact-columns">
-    <div class="contact-left">
-      <h2>Email</h2>
-      <p>contact@trident.com</p>
-    </div>
-    <div class="contact-right">
-      <h2>Phone</h2>
-      <p>888-888-8888</p>
-    </div>
+<!-- Square overlay -->
+<div id="square-overlay">
+  <!-- 64 squares -->
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
+</div>
+
+<!-- Contact columns -->
+<div class="contact-columns">
+  <div class="contact-left">
+    <h2>Email</h2>
+    <p>contact@trident.com</p>
+  </div>
+  <div class="contact-right">
+    <h2>Phone</h2>
+    <p>888-888-8888</p>
   </div>
 </div>
+
+<!-- Return X -->
+<button id="return-btn" onclick="closeSquares()">×</button>
 
 <footer>© 2025 Trident</footer>
 
@@ -322,13 +338,13 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function rippleTransition() {
-  const overlay = document.getElementById('ripple-overlay');
+function expandSquares() {
+  const overlay = document.getElementById('square-overlay');
   overlay.classList.add('show');
 }
 
-function closeOverlay() {
-  const overlay = document.getElementById('ripple-overlay');
+function closeSquares() {
+  const overlay = document.getElementById('square-overlay');
   overlay.classList.remove('show');
 }
 </script>
