@@ -188,21 +188,21 @@ footer {
   text-align: center;
 }
 
-/* Full-page overlay expanding from bottom-right */
+/* Full-page overlay expanding from bottom-right (starts invisible) */
 #ripple-overlay {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 60px;
-  height: 60px;
+  width: 0;
+  height: 0;
   background: black;
   z-index: 2000;
-  clip-path: circle(30px at bottom right); /* small circle at bottom-right */
-  transition: clip-path 0.8s ease-out;
+  clip-path: circle(0 at bottom right);
   overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: clip-path 0.8s ease-out, width 0s, height 0s;
 }
 
 /* When active, cover whole page */
