@@ -24,18 +24,23 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
+  border-bottom:1px solid gold;
 }
 
 .logo-container {
   display:flex;
   align-items:center;
   cursor:pointer;
+  border:1px solid gold;
+  padding:5px 10px;
+  border-radius:8px;
 }
 .logo-container .title {
   font-size:2em;
   font-weight:1000;
   margin:0;
   letter-spacing:2px;
+  -webkit-text-stroke: 0.7px gold;
 }
 .logo-container .subtitle {
   display:flex;
@@ -43,6 +48,7 @@ header {
   margin-left:15px;
   font-weight:700;
   text-transform:capitalize;
+  -webkit-text-stroke: 0.4px gold;
 }
 .logo-container .subtitle p {
   margin:0;
@@ -62,6 +68,7 @@ header {
   background:transparent;
   cursor:pointer;
   margin-left:1em;
+  border:1px solid gold;
 }
 .header-links a:hover {
   background:rgba(255,255,255,.1);
@@ -84,6 +91,8 @@ section {
   padding:3em 2em;
   box-sizing:border-box;
   color:white;
+  border-top:1px solid gold;
+  border-bottom:1px solid gold;
 }
 
 section.active {
@@ -137,12 +146,20 @@ section.active {
   font-weight:700;
   text-transform:uppercase;
   letter-spacing:1px;
+  border:1px solid gold;
+  padding:15px 25px;
+  border-radius:10px;
+  -webkit-text-stroke: 0.5px gold;
 }
 
 #about h1 {
   margin-bottom:1em;
   font-size:2.5em;
   letter-spacing:2px;
+  -webkit-text-stroke: 0.8px gold;
+}
+#about p {
+  -webkit-text-stroke: 0.4px gold;
 }
 
 footer {
@@ -152,6 +169,7 @@ footer {
   font-size:1em;
   color:#c0c0c0;
   text-transform:uppercase;
+  border-top:1px solid gold;
 }
 
 /* Contact Bubble */
@@ -170,7 +188,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid rgba(255,255,255,0.25);
+  border: 1.5px solid gold;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -182,6 +200,7 @@ footer {
   text-transform: uppercase;
   font-size: 0.95em;
   text-align: center;
+  -webkit-text-stroke: 0.4px gold;
 }
 
 /* Popup Contact Box */
@@ -192,9 +211,9 @@ footer {
   width: 390px;
   min-height: 420px;
   background: rgba(15, 30, 50, 0.9);
-  border: 1.5px solid rgba(120, 190, 255, 0.3);
+  border: 1.5px solid gold;
   border-radius: 16px;
-  box-shadow: 0 0 30px rgba(100,180,255,0.35);
+  box-shadow: 0 0 30px rgba(255,215,0,0.3);
   padding: 25px;
   color: white;
   backdrop-filter: blur(10px);
@@ -215,12 +234,14 @@ footer {
   margin-bottom: 0.3em;
   text-transform: uppercase;
   color: #a8d8ff;
+  -webkit-text-stroke: 0.4px gold;
 }
 #contact-popup p {
   margin: 0 0 0.8em 0;
   font-size: 0.95em;
   font-weight: 500;
   color: #e6f3ff;
+  -webkit-text-stroke: 0.3px gold;
 }
 
 .contact-columns {
@@ -228,6 +249,9 @@ footer {
   justify-content: space-between;
   gap: 20px;
   margin-top: 1.5em;
+  border:1px solid gold;
+  padding:15px;
+  border-radius:10px;
 }
 .contact-column {
   flex: 1;
@@ -241,14 +265,14 @@ footer {
   right: 16px;
   background: transparent;
   border: none;
-  color: white;
+  color: gold;
   font-size: 1.4em;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.2s;
 }
 #close-popup:hover {
-  color: #78beff;
+  color: #fff4b0;
 }
 </style>
 </head>
