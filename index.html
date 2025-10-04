@@ -24,7 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 2px solid gold;
+  border-bottom: 1.5px solid gold; /* kept gold border under header */
 }
 
 .logo-container {
@@ -157,7 +157,6 @@ footer {
   font-size:1em;
   color:#c0c0c0;
   text-transform:uppercase;
-  border-top: 2px solid gold;
 }
 
 /* Contact Bubble */
@@ -176,7 +175,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 2px solid gold;
+  border: 1.5px solid gold;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -190,54 +189,56 @@ footer {
   text-align: center;
 }
 
-/* Pop-up Box (grows from bubble) */
+/* Pop-up Box */
 #popup-box {
   position: fixed;
-  bottom: 80px; /* above bubble */
+  bottom: 90px;
   right: 20px;
-  width: 480px; /* wider */
-  height: 480px; /* taller */
-  background: rgba(255,255,255,0.1); /* translucent */
+  width: 480px; /* 1.5x wider */
+  height: 480px; /* 2x taller */
+  background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none;
   flex-direction: column;
-  border: none;
-  transform: scale(0);
-  transform-origin: bottom right;
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
-  opacity: 0;
-  z-index: 1100;
+  padding: 20px;
+  z-index: 1001;
+  color: white;
 }
 
-#popup-box.show {
-  transform: scale(1);
-  opacity: 1;
-}
-
+/* Pop-up Columns */
 .popup-columns {
   display: flex;
-  width: 90%;
-  height: 90%;
+  justify-content: space-between;
+  height: 100%;
+  align-items: center;
 }
-
 .popup-left, .popup-right {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+}
+.popup-divider {
+  width: 1px;
+  background: rgba(255,255,255,0.25);
+  margin: 0 10px;
+}
+
+/* Close X button (Twitter style) */
+#popup-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: transparent;
+  border: none;
   color: white;
   font-size: 1.5em;
   font-weight: 700;
-  text-transform: uppercase;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: transform 0.2s;
 }
-
-.popup-divider {
-  width: 2px;
-  background: gold;
-  margin: 0 10px;
+#popup-close:hover {
+  transform: rotate(90deg);
 }
 </style>
 </head>
@@ -284,6 +285,7 @@ footer {
 
 <!-- Pop-up Box -->
 <div id="popup-box">
+  <button id="popup-close" onclick="closePopup()">×</button>
   <div class="popup-columns">
     <div class="popup-left">
       <h2>Email</h2>
@@ -307,8 +309,11 @@ function showPage(pageId){
 }
 
 function showPopup() {
-  const popup = document.getElementById('popup-box');
-  popup.classList.add('show');
+  document.getElementById('popup-box').style.display = 'flex';
+}
+
+function closePopup() {
+  document.getElementById('popup-box').style.display = 'none';
 }
 </script>
 
