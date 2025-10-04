@@ -24,6 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
+  border-bottom: 2px solid gold; /* gold line under header */
 }
 
 .logo-container {
@@ -174,7 +175,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid rgba(255,255,255,0.25);
+  border: 2px solid gold; /* gold outline */
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -188,33 +189,33 @@ footer {
   text-align: center;
 }
 
-/* Pop-up Box */
+/* Pop-up box */
 #popup-box {
-  display: flex;
-  justify-content: space-between;
-  width: 480px;
-  height: 400px;
-  background: rgba(173, 216, 230, 0.9); /* baby blue tint */
   position: fixed;
   bottom: 90px;
   right: 20px;
-  padding: 20px;
-  border-radius: 15px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  width: 320px;  /* wider */
+  height: 300px; /* taller */
+  background: rgba(173, 216, 230, 0.9); /* baby blue tint */
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   z-index: 1500;
+  display: none; /* hidden until click */
+  flex-direction: row;
+  padding: 20px;
+  gap: 20px;
 }
-
-#popup-box.show {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-#popup-box .column {
+.popup-column {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: #0a0c12;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+.popup-column h2 {
+  margin-bottom: 10px;
 }
 </style>
 </head>
@@ -261,11 +262,11 @@ footer {
 
 <!-- Pop-up Box -->
 <div id="popup-box">
-  <div class="column">
+  <div class="popup-column">
     <h2>Email</h2>
     <p>contact@trident.com</p>
   </div>
-  <div class="column">
+  <div class="popup-column">
     <h2>Phone</h2>
     <p>888-888-8888</p>
   </div>
@@ -282,7 +283,11 @@ function showPage(pageId){
 
 function togglePopup() {
   const popup = document.getElementById('popup-box');
-  popup.classList.toggle('show'); // shows or hides the pop-up
+  if (popup.style.display === 'flex') {
+    popup.style.display = 'none';
+  } else {
+    popup.style.display = 'flex';
+  }
 }
 </script>
 
