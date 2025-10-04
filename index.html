@@ -28,36 +28,25 @@
       position: relative;
     }
 
-    /* Logo text block */
-    .logo-text {
+    /* Logo container with TRIDENT and subtitle to the right */
+    .logo-container {
       display: flex;
-      flex-direction: column;
+      align-items: center;
       cursor: pointer;
-      align-items: flex-start; /* left-align text */
     }
 
-    .logo-text .title {
+    .logo-container .title {
       font-size: 2em;
       font-weight: 1000; /* ultra bold */
       margin: 0;
       letter-spacing: 2px;
     }
 
-    .logo-text .divider {
-      border: none;
-      height: 1px; /* thin line */
-      background-color: #f0f0f0;
-      margin: 4px 0; /* spacing between title and subtitle */
-      width: 100%;
-      align-self: flex-start; /* line perfectly aligns with text */
-    }
-
-    .logo-text .subtitle {
-      font-size: 0.8em;
+    .logo-container .subtitle {
+      font-size: 0.9em;
       font-weight: 700;
-      text-transform: capitalize; /* P T C capitalized */
-      margin: 0;
-      line-height: 1em;
+      margin-left: 15px; /* spacing between TRIDENT and subtitle */
+      text-transform: capitalize;
     }
 
     /* Header links */
@@ -179,10 +168,9 @@
 <body>
 
   <header>
-    <!-- Logo text with subtitle -->
-    <div class="logo-text" onclick="showPage('home')">
+    <!-- Logo with TRIDENT and subtitle to the right -->
+    <div class="logo-container" onclick="showPage('home')">
       <p class="title">TRIDENT</p>
-      <hr class="divider">
       <p class="subtitle">Pierce The Competition</p>
     </div>
 
