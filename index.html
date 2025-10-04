@@ -22,13 +22,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1.5em 2em;
+      padding: 0 2em;
       font-size: 1.5em;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
       text-transform: uppercase;
       letter-spacing: 2px;
       position: relative;
       height: 80px; /* fixed header height */
+      overflow: hidden; /* ensures logo doesn't push header taller */
     }
 
     header a {
@@ -49,13 +50,13 @@
       background-color: rgba(255,255,255,0.1);
     }
 
-    /* Stretched logo that respects header height */
+    /* Stretched logo */
     header .logo {
-      max-height: 100%;    /* fits within header height */
-      width: auto;         /* stretches horizontally */
+      width: 100%;        /* fill header width */
+      height: 100%;       /* keep within header height */
+      object-fit: cover;  /* stretch and crop if needed */
       cursor: pointer;
       display: block;
-      margin: 0 auto;
     }
 
     main {
