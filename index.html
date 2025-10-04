@@ -95,7 +95,6 @@ section.active {
   position:relative;
 }
 
-/* Homepage background */
 #home {
   position: relative;
   background-image: url('images/submarine.png');
@@ -140,7 +139,7 @@ section.active {
   letter-spacing:1px;
 }
 
-#about h1, #contact h1 {
+#about h1 {
   margin-bottom:1em;
   font-size:2.5em;
   letter-spacing:2px;
@@ -190,14 +189,15 @@ footer {
   position: fixed;
   bottom: 90px;
   right: 20px;
-  width: 260px;
-  background: rgba(0,0,0,0.85);
-  border: 1.5px solid rgba(255,255,255,0.2);
-  border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-  padding: 20px;
+  width: 390px; /* 1.5x wider */
+  min-height: 300px; /* 2x higher */
+  background: rgba(15, 30, 50, 0.9);
+  border: 1.5px solid rgba(120, 190, 255, 0.3);
+  border-radius: 16px;
+  box-shadow: 0 0 25px rgba(100,180,255,0.3);
+  padding: 25px;
   color: white;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   opacity: 0;
   transform: translateY(10px);
   transition: all 0.3s ease;
@@ -214,27 +214,29 @@ footer {
   font-size: 1.2em;
   margin: 0 0 0.3em 0;
   text-transform: uppercase;
+  color: #a8d8ff;
 }
 #contact-popup p {
   margin: 0 0 0.8em 0;
   font-size: 0.95em;
   font-weight: 500;
+  color: #e6f3ff;
 }
 
 #close-popup {
   position: absolute;
-  top: 10px;
-  right: 12px;
+  top: 12px;
+  right: 16px;
   background: transparent;
   border: none;
   color: white;
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.2s;
 }
 #close-popup:hover {
-  color: #f0c040;
+  color: #78beff;
 }
 </style>
 </head>
