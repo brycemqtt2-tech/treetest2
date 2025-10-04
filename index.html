@@ -311,32 +311,25 @@ function showPage(pageId){
 }
 
 function showPopup() {
+  const button = document.querySelector('.connect-bubble-expanded');
   const popup = document.getElementById('popup-box');
-  const content = popup.querySelector('.popup-columns');
 
-  popup.style.display = 'flex';
+  // get button position
+  const rect = button.getBoundingClientRect();
+  popup.style.top = rect.top + 'px';  // anchor to button
+  popup.style.right = (window.innerWidth - rect.right) + 'px'; // keep horizontal alignment
   popup.style.height = '0';
+  popup.style.display = 'flex';
 
   setTimeout(() => {
-    popup.style.height = '480px'; // grow to full height
+    popup.style.height = '480px';
   }, 10);
 
   setTimeout(() => {
-    content.style.opacity = 1; // fade in content
+    popup.querySelector('.popup-columns').style.opacity = 1;
   }, 250);
 }
 
-function closePopup() {
-  const popup = document.getElementById('popup-box');
-  const content = popup.querySelector('.popup-columns');
-
-  content.style.opacity = 0;
-  popup.style.height = '0';
-
-  setTimeout(() => {
-    popup.style.display = 'none';
-  }, 250);
-}
 </script>
 
 </body>
