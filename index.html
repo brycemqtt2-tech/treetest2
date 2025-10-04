@@ -148,8 +148,9 @@ footer{
   margin:.5em 0;
   text-transform:uppercase;
   letter-spacing:.5px;
+}
 
-/* Connect Bubble */
+/* Contact Bubble */
 .connect-bubble {
   position: fixed;
   bottom: 20px;
@@ -164,19 +165,19 @@ footer{
   overflow: hidden;
   backdrop-filter: blur(5px);
   transition: width 0.4s, border-radius 0.4s, padding 0.4s;
-  display: flex;
+  display: flex;              /* ensures it is visible */
   align-items: center;
   justify-content: center;
 }
 
 .connect-bubble .bubble-label {
-  position: absolute; 
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   font-weight: 700;
   text-transform: uppercase;
-  font-size: 0.95em;   /* slightly smaller to fit */
+  font-size: 0.95em;
   transition: opacity 0.3s ease;
   opacity: 1;
 }
@@ -259,7 +260,7 @@ footer{
 </section>
 </main>
 
-<!-- Connect Bubble -->
+<!-- Contact Bubble -->
 <div class="connect-bubble">
   <div class="bubble-label">Contact</div>
   <div class="bubble-options">
