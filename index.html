@@ -100,22 +100,20 @@ section.active {
 #home {
   position: relative;
   background-image: url('images/submarine.png');
-  background-size: 100% 100%;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-/* Subtle black overlay (less dark to reduce blur effect) */
 #home::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.4); /* reduced from 0.6 */
+  background-color: rgba(0,0,0,0.4);
   z-index: 0;
 }
 
-/* Bottom fade overlay */
 #home::after {
   content: "";
   position: absolute;
@@ -128,7 +126,6 @@ section.active {
   pointer-events: none;
 }
 
-/* Homepage text stacked bottom-left */
 .home-text {
   position: absolute;
   bottom: 40px;
@@ -155,7 +152,7 @@ footer {
   text-align: center;
   padding: 1em;
   font-size: 1em;
-  color: #c0c0c0; /* changed from #c0c0c0 to black */
+  color: #c0c0c0;
   text-transform: uppercase;
 }
 
@@ -189,17 +186,16 @@ footer {
   text-align: center;
 }
 
-/* Inside #popup-box, remove old animation height */
 /* Pop-up Box */
 #popup-box {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 480px;
-  height: 0; /* collapsed */
+  height: 0;
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
-  display: none; /* HIDDEN initially */
+  display: none;
   flex-direction: column;
   padding: 20px;
   z-index: 1001;
@@ -208,50 +204,16 @@ footer {
   transition: height 0.25s ease-out;
 }
 
-#popup-box.show {
-  display: flex; /* show when triggered */
-  height: 480px;
-}
-  
-/* Pop-up Columns – content hidden initially */
+/* Pop-up Columns – hidden initially */
 .popup-columns {
   display: flex;
   justify-content: space-between;
   height: 100%;
   align-items: flex-start;
   opacity: 0;
-  transition: opacity 0.2s ease-in;
+  transition: opacity 0.25s ease-in;
 }
 
-/* Slice bars */
-#popup-box .slice {
-  height: 0;
-  width: 100%;
-  background: inherit;
-  margin-bottom: 0;
-}
-
-/* Animate each slice when 'show' is added */
-#popup-box .slice.show {
-  animation: growSlice 0.06s forwards;
-}
-
-@keyframes growSlice {
-  0% { height: 0; }
-  100% { height: 48px; } /* adjust based on number of slices */
-}
-
-#popup-box.show {
-  transform: scale(1);
-}
-
-/* Pop-up Columns */
-.popup-columns {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
-  align-items: flex-start;
-}
 .popup-left, .popup-right {
   flex: 1;
   text-align: center;
@@ -262,7 +224,7 @@ footer {
   margin: 0 10px;
 }
 
-/* Close X button (Twitter style) */
+/* Close X button */
 #popup-close {
   position: absolute;
   top: 10px;
@@ -326,19 +288,7 @@ footer {
 <!-- Pop-up Box -->
 <div id="popup-box">
   <button id="popup-close" onclick="closePopup()">×</button>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-  <div class="slice"></div>
-
-  <!-- Original content stays on top, hide initially -->
-  <div class="popup-columns" style="opacity:0;">
+  <div class="popup-columns">
     <div class="popup-left">
       <h2>Email</h2>
       <p>contact@trident.com</p>
@@ -355,36 +305,38 @@ footer {
 
 <script>
 function showPage(pageId){
-  document.querySelectorAll('section').forEach(sec=>sec.classList.remove('active'));
+  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   window.scrollTo(0,0);
 }
 
 function showPopup() {
   const popup = document.getElementById('popup-box');
-  popup.style.display = 'flex'; // show
-  popup.style.height = '0';     // start collapsed
+  const content = popup.querySelector('.popup-columns');
 
-  // trigger expansion in next tick
+  popup.style.display = 'flex';
+  popup.style.height = '0';
+
   setTimeout(() => {
     popup.style.height = '480px'; // grow to full height
   }, 10);
 
-  // fade in content after box grows
   setTimeout(() => {
-    popup.querySelector('.popup-columns').style.opacity = 1;
+    content.style.opacity = 1; // fade in content
   }, 250);
 }
 
 function closePopup() {
   const popup = document.getElementById('popup-box');
-  popup.querySelector('.popup-columns').style.opacity = 0;
+  const content = popup.querySelector('.popup-columns');
+
+  content.style.opacity = 0;
   popup.style.height = '0';
 
   setTimeout(() => {
     popup.style.display = 'none';
   }, 250);
-
+}
 </script>
 
 </body>
