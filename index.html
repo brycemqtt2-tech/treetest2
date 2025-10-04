@@ -83,7 +83,6 @@ section {
   min-height:calc(100vh - 80px);
   padding:3em 2em;
   box-sizing:border-box;
-  background:linear-gradient(to bottom,#0a0c12,#12151f);
   color:white;
 }
 
@@ -96,23 +95,37 @@ section.active {
   position:relative;
 }
 
+/* Homepage background */
 #home {
-  position:relative;
+  position: relative;
+  background-image: url('images/submarine.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+#home::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  z-index: 0;
 }
 
+/* Homepage text stacked bottom-left */
 .home-text {
   position: absolute;
-  bottom:40px;
-  left:40px;
-  display:flex;
-  flex-direction:column;
-  color:white;
-  z-index:1;
-  line-height:1.5em;
-  font-size:1.5em;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:1px;
+  bottom: 40px;
+  left: 40px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  z-index: 1;
+  line-height: 1.5em;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 #about h1, #contact h1 {
