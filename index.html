@@ -189,7 +189,7 @@ footer {
   text-align: center;
 }
 
-/* Pop-up Box with incremental upward animation */
+/* Inside #popup-box, remove old animation height */
 #popup-box {
   position: fixed;
   bottom: 90px;
@@ -198,34 +198,30 @@ footer {
   height: 480px;
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 20px;
   z-index: 1001;
   color: white;
-
-  overflow: hidden;          /* hide the bars overflow */
-  transform-origin: bottom right;
-  display: none;             /* start hidden */
+  overflow: hidden;
 }
 
-#popup-box.show {
-  display: flex;
-  animation: growUp 0.6s forwards;
+/* Slice bars */
+#popup-box .slice {
+  height: 0;
+  width: 100%;
+  background: inherit;
+  margin-bottom: 0px;
 }
 
-@keyframes growUp {
+/* Animate each slice */
+#popup-box.show .slice {
+  animation: growSlice 0.08s forwards;
+}
+
+@keyframes growSlice {
   0% { height: 0; }
-  10% { height: 48px; }
-  20% { height: 96px; }
-  30% { height: 144px; }
-  40% { height: 192px; }
-  50% { height: 240px; }
-  60% { height: 288px; }
-  70% { height: 336px; }
-  80% { height: 384px; }
-  90% { height: 432px; }
-  100% { height: 480px; }
+  100% { height: 48px; } /* total 480px / 10 slices = 48px per slice */
 }
 
 #popup-box.show {
@@ -313,7 +309,19 @@ footer {
 <!-- Pop-up Box -->
 <div id="popup-box">
   <button id="popup-close" onclick="closePopup()">×</button>
-  <div class="popup-columns">
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+  <div class="slice"></div>
+
+  <!-- Original content stays on top, hide initially -->
+  <div class="popup-columns" style="opacity:0;">
     <div class="popup-left">
       <h2>Email</h2>
       <p>contact@trident.com</p>
@@ -325,7 +333,7 @@ footer {
     </div>
   </div>
 </div>
-
+  
 <footer>© 2025 Trident</footer>
 
 <script>
@@ -337,16 +345,34 @@ function showPage(pageId){
 
 function showPopup() {
   const popup = document.getElementById('popup-box');
-  popup.classList.remove('show');  // reset animation if needed
-  popup.style.display = 'flex';    
-  setTimeout(() => popup.classList.add('show'), 10);
+  popup.style.display = 'flex';
+  
+  // select all slices
+  const slices = popup.querySelectorAll('.slice');
+  slices.forEach((slice, index) => {
+    slice.style.animationDelay = `${index * 0.04}s`; // stagger quickly
+    slice.classList.add('show');
+  });
+
+  // fade in content after slices finish
+  setTimeout(() => {
+    popup.querySelector('.popup-columns').style.opacity = 1;
+  }, 0.08 * slices.length * 1000); // 0.08s per slice * number of slices
 }
 
 function closePopup() {
   const popup = document.getElementById('popup-box');
-  popup.style.height = '0';       // shrink instantly
-  setTimeout(() => popup.style.display = 'none', 400);
-  popup.classList.remove('show');
+  popup.querySelector('.popup-columns').style.opacity = 0;
+
+  // reset slices
+  popup.querySelectorAll('.slice').forEach(slice => {
+    slice.classList.remove('show');
+    slice.style.height = '0';
+  });
+
+  setTimeout(() => {
+    popup.style.display = 'none';
+  }, 50); // small delay to let reset happen
 }
 </script>
 
