@@ -190,7 +190,7 @@ footer {
   bottom: 90px;
   right: 20px;
   width: 390px;
-  min-height: 420px; /* Taller popup */
+  min-height: 420px;
   background: rgba(15, 30, 50, 0.9);
   border: 1.5px solid rgba(120, 190, 255, 0.3);
   border-radius: 16px;
@@ -212,7 +212,7 @@ footer {
 
 #contact-popup h2 {
   font-size: 1.2em;
-  margin: 0 0 0.3em 0;
+  margin-bottom: 0.3em;
   text-transform: uppercase;
   color: #a8d8ff;
 }
@@ -221,6 +221,18 @@ footer {
   font-size: 0.95em;
   font-weight: 500;
   color: #e6f3ff;
+}
+
+.contact-columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 1.5em;
+}
+.contact-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 #close-popup {
@@ -278,10 +290,18 @@ footer {
 <!-- Contact Popup -->
 <div id="contact-popup">
   <button id="close-popup" onclick="togglePopup()">×</button>
-  <h2>Email</h2>
-  <p>contact@trident.com</p>
-  <h2>Phone</h2>
-  <p>888-888-8888</p>
+  <div class="contact-columns">
+    <div class="contact-column">
+      <h2>Email</h2>
+      <p>contact@trident.com</p>
+      <p>support@trident.com</p>
+    </div>
+    <div class="contact-column">
+      <h2>Phone</h2>
+      <p>(888) 888-8888</p>
+      <p>(212) 555-4321</p>
+    </div>
+  </div>
 </div>
 
 <footer>© 2025 Trident</footer>
