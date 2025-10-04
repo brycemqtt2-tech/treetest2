@@ -216,7 +216,7 @@ footer {
 
 /* Animate each slice */
 #popup-box.show .slice {
-  animation: growSlice 0.08s forwards;
+  animation: growSlice 0.6s forwards;
 }
 
 @keyframes growSlice {
@@ -350,7 +350,7 @@ function showPopup() {
   // select all slices
   const slices = popup.querySelectorAll('.slice');
   slices.forEach((slice, index) => {
-    slice.style.animationDelay = `${index * 0.04}s`; // stagger quickly
+    slice.style.animationDelay = `${index * 0.02}s`; // stagger quickly
     slice.classList.add('show');
   });
 
