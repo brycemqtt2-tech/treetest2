@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trident</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Roboto', Arial, sans-serif;
@@ -14,23 +14,21 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      background: #001f3f; /* fallback */
+      background: #001f3f;
     }
 
     header {
       background-color: rgba(0, 25, 75, 0.95);
       display: flex;
-      justify-content: space-between; /* logo left, links right */
+      justify-content: space-between;
       align-items: center;
       padding: 0 2em;
-      font-size: 1.5em;
+      height: 80px;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
-      text-transform: uppercase;
-      letter-spacing: 2px;
       position: relative;
-      height: 80px; /* fixed header height */
     }
 
+    /* Logo text like NAVY font */
     .logo-text {
       display: flex;
       flex-direction: column;
@@ -38,15 +36,16 @@
     }
 
     .logo-text .title {
-      font-size: 1.8em;
-      font-weight: 900;
+      font-size: 2em;
+      font-weight: 900; /* very bold, like NAVY */
       margin: 0;
+      letter-spacing: 2px;
     }
 
     .logo-text .subtitle {
-      font-size: 0.9em;
-      font-weight: 400;
-      text-transform: none; /* normal text */
+      font-size: 0.8em;
+      font-weight: 700;
+      text-transform: capitalize; /* P T C capitalized */
       margin: 0;
       line-height: 1em;
     }
@@ -82,23 +81,23 @@
     section {
       display: none;
       width: 100%;
-      min-height: calc(100vh - 80px); /* leave space for header */
+      min-height: calc(100vh - 80px);
       padding: 3em 2em;
       box-sizing: border-box;
       background: linear-gradient(to bottom, #001f3f, #003366);
       color: white;
     }
 
-    section.active { 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center; 
-      text-align: center; 
-      position: relative; 
+    section.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
     }
 
-    /* Home section with submarine background */
+    /* Home section */
     #home {
       background-image: url('images/submarine.jpg');
       background-size: cover;
@@ -106,7 +105,6 @@
       background-repeat: no-repeat;
     }
 
-    /* Overlay to improve text readability */
     #home::before {
       content: "";
       position: absolute;
@@ -173,7 +171,7 @@
     <!-- Text logo on left -->
     <div class="logo-text" onclick="showPage('home')">
       <p class="title">TRIDENT</p>
-      <p class="subtitle">Pierce the competition.</p>
+      <p class="subtitle">Pierce The Competition.</p>
     </div>
 
     <!-- Header links on right -->
@@ -207,7 +205,7 @@
     function showPage(pageId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      window.scrollTo(0,0); // scroll to top
+      window.scrollTo(0,0); 
     }
   </script>
 
