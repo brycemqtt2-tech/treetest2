@@ -4,9 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tree Services Signup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Roboto', Arial, sans-serif;
       margin: 0;
       color: #f0f0f0;
       background: linear-gradient(to bottom, #0b3d0b, #1a2d1a);
@@ -58,26 +59,37 @@
       align-items: center;
       justify-content: flex-start;
       text-align: center;
-      padding: 2em;
+      padding: 3em 2em;
     }
 
     section { display: none; max-width: 900px; }
     section.active { display: block; }
 
-    h1 { margin-bottom: 0.5em; }
-    p { font-size: 1.1em; line-height: 1.6em; }
+    h1 {
+      margin-bottom: 1em;
+      font-weight: 700;
+      font-size: 2em;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6em;
+      font-weight: 400;
+      margin-bottom: 2em;
+    }
 
     .signup-button {
       display: inline-block;
       background: #4CAF50;
       color: white;
       text-decoration: none;
-      padding: 0.7em 1.5em;
+      padding: 0.8em 2em;
       border-radius: 8px;
-      font-weight: bold;
-      margin-top: 1.5em;
+      font-weight: 700;
+      font-size: 1.1em;
       transition: background 0.3s;
     }
+
     .signup-button:hover { background: #3e8e41; }
 
     footer {
@@ -93,7 +105,7 @@
   <header>
     <div class="left">
       <span id="arrow" class="arrow" style="display:none;" onclick="showPage('home')">←</span>
-      <span id="siteName" style="font-size: 1.3em; font-weight: bold;">Tree Services</span>
+      <span id="siteName">Tree Services</span>
     </div>
     <div class="right">
       <a href="#" onclick="showPage('about')">About</a>
@@ -102,15 +114,14 @@
 
   <main>
     <section id="home" class="active">
-      <h1>Welcome to Tree Services Signup</h1>
-      <p>Professional tree climbers and business owners, sign up to grow your network and find clients.</p>
+      <h1>Welcome</h1>
+      <p>Sign up to join our professional tree services network.</p>
       <a href="#" class="signup-button" onclick="showPage('about')">Learn More / Sign Up</a>
     </section>
 
     <section id="about">
-      <h1>About Tree Services</h1>
-      <p>We connect professional tree climbers with business owners looking for tree care services.  
-      Our platform helps you find jobs, network, and grow your business efficiently.</p>
+      <h1>About</h1>
+      <p>Our platform connects tree service professionals with business opportunities and clients.</p>
     </section>
   </main>
 
