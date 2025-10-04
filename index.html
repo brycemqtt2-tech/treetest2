@@ -63,7 +63,9 @@ header {
   cursor:pointer;
   margin-left:1em;
 }
-.header-links a:hover { background:rgba(255,255,255,.1); }
+.header-links a:hover {
+  background:rgba(255,255,255,.1);
+}
 
 main {
   flex:1;
@@ -109,11 +111,15 @@ section.active {
   background-color: rgba(0,0,0,0.6);
   z-index: 0;
 }
+
+/* Bottom fade overlay */
 #home::after {
   content: "";
   position: absolute;
-  bottom: 0; left: 0;
-  width: 100%; height: 200px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
   background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
   z-index: 1;
   pointer-events: none;
@@ -150,44 +156,16 @@ footer {
   text-transform:uppercase;
 }
 
-/* Connect Bubble */
-.connect-bubble-expanded {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 160px;
-  height: auto;
-  background: rgba(0,0,0,0.7);
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 15px;
-  backdrop-filter: blur(5px);
-  border: 1.5px solid rgba(255,255,255,0.25);
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.connect-bubble-expanded:hover { transform: scale(1.05); }
-.connect-bubble-expanded .contact-label {
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.95em;
-  text-align: center;
-}
-
-/* Square Expansion Overlay */
+/* Contact Overlay */
 #square-overlay {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 160px;
-  height: 160px;
+  bottom: 0;
+  right: 0;
+  width: 100vw;
+  height: 100vh;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(16, 1fr);
   gap: 2px;
   z-index: 2000;
   pointer-events: none;
@@ -202,54 +180,58 @@ footer {
 }
 
 #square-overlay.show .square {
-  animation: expandSquare 0.8s forwards;
+  animation: expandSquare 0.6s forwards;
 }
 
 @keyframes expandSquare {
-  to { transform: scale(50); }
+  to { transform: scale(1); }
 }
 
-/* Contact columns inside overlay */
+/* Contact Columns */
 .contact-columns {
+  display: none;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2100;
   display: flex;
-  justify-content: space-between;
-  width: 80%;
-  max-width: 900px;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
   color: white;
+}
+
+.contact-columns.active {
+  display: flex;
+}
+
+.contact-left, .contact-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   font-size: 1.5em;
   font-weight: 700;
-  text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 0.5s 0.8s;
-  z-index: 2100;
 }
 
-#square-overlay.show + .contact-columns {
-  opacity: 1;
-}
-
-/* Minimalistic X Return button */
+/* Return X */
 #return-btn {
+  display: none;
   position: fixed;
   top: 20px;
   left: 20px;
+  font-size: 2em;
+  font-weight: 700;
   background: transparent;
   border: none;
   color: white;
-  font-size: 1.5em;
-  font-weight: 700;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s;
   z-index: 2200;
 }
 
-#square-overlay.show ~ #return-btn {
-  opacity: 1;
+#return-btn.active {
+  display: block;
 }
 </style>
 </head>
@@ -289,33 +271,16 @@ footer {
 </section>
 </main>
 
-<!-- Connect Bubble -->
-<div class="connect-bubble-expanded" onclick="expandSquares()">
+<!-- Contact Bubble -->
+<div class="connect-bubble-expanded" onclick="openSquares()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
 <!-- Square overlay -->
-<div id="square-overlay">
-  <!-- 64 squares -->
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-  <div class="square"></div><div class="square"></div><div class="square"></div><div class="square"></div>
-</div>
+<div id="square-overlay"></div>
 
-<!-- Contact columns -->
-<div class="contact-columns">
+<!-- Contact Columns -->
+<div class="contact-columns" id="contact-columns">
   <div class="contact-left">
     <h2>Email</h2>
     <p>contact@trident.com</p>
@@ -338,14 +303,32 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function expandSquares() {
+function openSquares() {
   const overlay = document.getElementById('square-overlay');
+  const columns = document.getElementById('contact-columns');
+  const returnBtn = document.getElementById('return-btn');
+  
+  overlay.innerHTML = '';
+  const rows = 16;
+  const cols = 16;
+  for (let i = 0; i < rows*cols; i++){
+    const div = document.createElement('div');
+    div.classList.add('square');
+    const row = Math.floor(i / cols);
+    const col = i % cols;
+    const delay = ((rows-1-row)+(cols-1-col))*0.02;
+    div.style.animationDelay = `${delay}s`;
+    overlay.appendChild(div);
+  }
   overlay.classList.add('show');
+  columns.classList.add('active');
+  returnBtn.classList.add('active');
 }
 
 function closeSquares() {
-  const overlay = document.getElementById('square-overlay');
-  overlay.classList.remove('show');
+  document.getElementById('square-overlay').classList.remove('show');
+  document.getElementById('contact-columns').classList.remove('active');
+  document.getElementById('return-btn').classList.remove('active');
 }
 </script>
 
