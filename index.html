@@ -189,10 +189,10 @@ footer {
 /* Pop-up Box */
 #popup-box {
   position: fixed;
-  bottom: 20px;
+  bottom: 100px; /* distance above the button */
   right: 20px;
   width: 480px;
-  height: 0;
+  height: 0; /* collapsed initially */
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
   display: none;
@@ -316,11 +316,21 @@ function showPopup() {
   popup.style.height = '0'; // start collapsed
 
   setTimeout(() => {
-    popup.style.height = '480px'; // grow upward from bottom
+    popup.style.height = '480px'; // grows upward from the bottom of the popup
   }, 10);
 
   setTimeout(() => {
     popup.querySelector('.popup-columns').style.opacity = 1;
+  }, 250);
+}
+
+function closePopup() {
+  const popup = document.getElementById('popup-box');
+  popup.querySelector('.popup-columns').style.opacity = 0;
+  popup.style.height = '0';
+
+  setTimeout(() => {
+    popup.style.display = 'none';
   }, 250);
 }
 
