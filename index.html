@@ -24,7 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 1.5px solid gold; /* kept gold border under header */
+  border-bottom: 1.5px solid gold;
 }
 
 .logo-container {
@@ -105,13 +105,13 @@ section.active {
   background-repeat: no-repeat;
 }
 
-/* Subtle black overlay */
+/* Subtle black overlay (less dark to reduce blur effect) */
 #home::before {
   content: "";
   position: absolute;
   top: 0; left: 0;
   width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.6);
+  background-color: rgba(0,0,0,0.4); /* reduced from 0.6 */
   z-index: 0;
 }
 
@@ -194,8 +194,8 @@ footer {
   position: fixed;
   bottom: 90px;
   right: 20px;
-  width: 480px; /* 1.5x wider */
-  height: 480px; /* 2x taller */
+  width: 480px;
+  height: 480px;
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
   display: none;
