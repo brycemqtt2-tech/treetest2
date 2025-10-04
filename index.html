@@ -28,26 +28,28 @@
       position: relative;
     }
 
-    /* Logo text like NAVY font with thin line */
+    /* Logo text like NAVY font with centered thin line */
     .logo-text {
       display: flex;
       flex-direction: column;
       cursor: pointer;
+      align-items: flex-start; /* left align text */
     }
 
     .logo-text .title {
       font-size: 2em;
-      font-weight: 1000; /* very bold */
+      font-weight: 1000; /* ultra bold */
       margin: 0;
       letter-spacing: 2px;
     }
 
     .logo-text .divider {
       border: none;
-      height: 1px;
+      height: 1px;      /* thin line */
       background-color: #f0f0f0;
-      margin: 2px 0;
+      margin: 4px 0;    /* spacing between title and subtitle */
       width: 100%;
+      align-self: flex-start; /* ensures line aligns perfectly with text */
     }
 
     .logo-text .subtitle {
@@ -176,7 +178,7 @@
 <body>
 
   <header>
-    <!-- Bold TRIDENT with divider and subtitle -->
+    <!-- Bold TRIDENT with centered divider and subtitle -->
     <div class="logo-text" onclick="showPage('home')">
       <p class="title">TRIDENT</p>
       <hr class="divider">
