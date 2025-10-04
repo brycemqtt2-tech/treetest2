@@ -27,14 +27,11 @@ p{font-size:1.5em;line-height:1.5em;margin-bottom:2em;text-transform:uppercase;l
 footer{background:rgba(5,10,25,.95);text-align:center;padding:1em;font-size:1em;color:#c0c0c0;text-transform:uppercase;letter-spacing:.5px}
 .contact-info{font-size:1.2em;margin:.5em 0;text-transform:uppercase;letter-spacing:.5px}
 
-/* Connect Bubble */
-.connect-bubble{position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,.6);color:white;width:80px;height:50px;border-radius:25px;display:flex;align-items:center;justify-content:flex-start;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.5);z-index:1000;flex-direction:row;overflow:hidden;backdrop-filter:blur(5px);transition:width .4s,padding .4s;animation:float 3s ease-in-out infinite;padding-left:10px}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-.connect-bubble .bubble-label{font-weight:700;text-transform:uppercase;font-size:.9em;white-space:nowrap;flex-shrink:0;transition:opacity .3s ease,transform .3s ease}
-.connect-bubble .bubble-options{display:flex;flex-direction:row;gap:.5em;margin-left:10px;opacity:0;transform:translateX(20px);transition:opacity .3s ease,transform .3s ease}
-.connect-bubble:hover{width:250px;padding:1em}
-.connect-bubble:hover .bubble-label{opacity:0;transform:translateX(-20px)}
-.connect-bubble:hover .bubble-options{opacity:1;transform:translateX(0)}
+/* Connect Bubble - always expanded and floating */
+.connect-bubble{position:fixed;bottom:20px;right:20px;background:rgba(0,0,0,.6);color:white;width:250px;height:50px;border-radius:25px;display:flex;align-items:center;justify-content:flex-start;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.5);z-index:1000;flex-direction:row;overflow:hidden;backdrop-filter:blur(5px);padding:1em;animation:float-move 6s ease-in-out infinite alternate}
+@keyframes float-move{0%{transform:translate(0,0)}25%{transform:translate(-10px,-5px)}50%{transform:translate(10px,-10px)}75%{transform:translate(-5px,5px)}100%{transform:translate(5px,0)}}
+.connect-bubble .bubble-label{opacity:1;transform:none;font-weight:700;text-transform:uppercase;font-size:.9em;white-space:nowrap;flex-shrink:0;transition:none}
+.connect-bubble .bubble-options{opacity:1;transform:none;display:flex;flex-direction:row;gap:.5em;margin-left:10px}
 .connect-bubble .bubble-options a{color:#f0f0f0;text-decoration:none;font-size:.9em;display:flex;align-items:center;gap:.3em;padding:.3em .6em;border-radius:8px;background:rgba(255,255,255,.1);transition:background .3s,transform .2s}
 .connect-bubble .bubble-options a:hover{background:rgba(255,255,255,.2);transform:translateX(5px)}
 </style>
