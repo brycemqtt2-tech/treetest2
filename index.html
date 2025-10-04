@@ -6,17 +6,17 @@
 <title>Trident</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">
 <style>
-body{
+body {
   font-family:'Roboto',Arial,sans-serif;
   margin:0;
   color:#f0f0f0;
-  font-weight:700;
   min-height:100vh;
   display:flex;
   flex-direction:column;
   background:#0a0c12;
 }
-header{
+
+header {
   background:rgba(5,10,25,0.95);
   display:flex;
   justify-content:space-between;
@@ -24,32 +24,33 @@ header{
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  position:relative;
 }
-.logo-container{
+
+.logo-container {
   display:flex;
   align-items:center;
   cursor:pointer;
 }
-.logo-container .title{
+.logo-container .title {
   font-size:2em;
   font-weight:1000;
   margin:0;
   letter-spacing:2px;
 }
-.logo-container .subtitle{
+.logo-container .subtitle {
   display:flex;
   flex-direction:column;
   margin-left:15px;
   font-weight:700;
   text-transform:capitalize;
 }
-.logo-container .subtitle p{
+.logo-container .subtitle p {
   margin:0;
   font-size:.9em;
   line-height:1em;
 }
-.header-links a{
+
+.header-links a {
   color:#f0f0f0;
   text-decoration:none;
   font-weight:700;
@@ -62,10 +63,11 @@ header{
   cursor:pointer;
   margin-left:1em;
 }
-.header-links a:hover{
+.header-links a:hover {
   background:rgba(255,255,255,.1);
 }
-main{
+
+main {
   flex:1;
   display:flex;
   flex-direction:column;
@@ -74,7 +76,8 @@ main{
   text-align:center;
   position:relative;
 }
-section{
+
+section {
   display:none;
   width:100%;
   min-height:calc(100vh - 80px);
@@ -83,71 +86,48 @@ section{
   background:linear-gradient(to bottom,#0a0c12,#12151f);
   color:white;
 }
-section.active{
+
+section.active {
   display:flex;
   flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+  align-items:flex-start;
+  justify-content:flex-end;
+  text-align:left;
   position:relative;
 }
-#home{
-  background-image:url('images/submarine.png');
-  background-size:cover;
-  background-position:center;
-  background-repeat:no-repeat;
+
+#home {
   position:relative;
 }
-#home::before{
-  content:"";
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
-  background-color:rgba(0,0,0,.75);
-  z-index:0;
-}
-#home>*{position:relative; z-index:1;}
-h1{
-  font-size:4em;
-  margin-bottom:1em;
-  text-transform:uppercase;
-  letter-spacing:3px;
-}
-p{
-  font-size:1.5em;
+
+.home-text {
+  position: absolute;
+  bottom:40px;
+  left:40px;
+  display:flex;
+  flex-direction:column;
+  color:white;
+  z-index:1;
   line-height:1.5em;
-  margin-bottom:2em;
+  font-size:1.5em;
+  font-weight:700;
   text-transform:uppercase;
   letter-spacing:1px;
 }
-.signup-button{
-  display:inline-block;
-  background:#005fa3;
-  color:white;
-  text-decoration:none;
-  padding:1em 2em;
-  border-radius:5px;
-  font-weight:700;
-  font-size:1.2em;
-  transition:background .3s;
-  text-transform:uppercase;
-  cursor:pointer;
+
+#about h1, #contact h1 {
+  margin-bottom:1em;
+  font-size:2.5em;
+  letter-spacing:2px;
 }
-.signup-button:hover{background:#00416b;}
-footer{
+
+footer {
   background:rgba(5,10,25,.95);
   text-align:center;
   padding:1em;
   font-size:1em;
   color:#c0c0c0;
   text-transform:uppercase;
-  letter-spacing:.5px;
-}
-.contact-info{
-  font-size:1.2em;
-  margin:.5em 0;
-  text-transform:uppercase;
-  letter-spacing:.5px;
 }
 
 /* Contact Panel */
@@ -155,16 +135,17 @@ footer{
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 120px;
-  background: rgba(0,0,0,0.6);
-  border-radius: 15px;
+  width: 160px;
+  height: auto;
+  background: rgba(0,0,0,0.7);
+  border-radius: 20px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 15px;
   backdrop-filter: blur(5px);
-  padding: 10px;
 }
 
 .connect-bubble-expanded .bubble-row {
@@ -181,7 +162,7 @@ footer{
 }
 
 .connect-bubble-expanded .bubble-icons {
-  gap: 15px; /* space between phone and email */
+  gap: 20px;
 }
 
 .connect-bubble-expanded a svg {
@@ -201,21 +182,24 @@ footer{
 
 <header>
 <div class="logo-container" onclick="showPage('home')">
-<p class="title">TRIDENT</p>
-<div class="subtitle">
-<p>Pierce The</p>
-<p>Competition</p>
-</div>
+  <p class="title">TRIDENT</p>
+  <div class="subtitle">
+    <p>Pierce The</p>
+    <p>Competition</p>
+  </div>
 </div>
 <div class="header-links">
-<a onclick="showPage('about')">About</a>
+  <a onclick="showPage('about')">About</a>
 </div>
 </header>
 
 <main>
 <section id="home" class="active">
-<p>JOIN TRIDENT. CONNECT WITH ELITE OPPORTUNITIES. ACHIEVE YOUR MISSION.</p>
-<a class="signup-button" onclick="showPage('about')">Learn More / Sign Up</a>
+  <div class="home-text">
+    <p>JOIN TRIDENT.</p>
+    <p>CONNECT WITH ELITE OPPORTUNITIES.</p>
+    <p>ACHIEVE YOUR MISSION.</p>
+  </div>
 </section>
 
 <section id="about">
@@ -235,14 +219,10 @@ footer{
   <div class="bubble-row contact-label">Contact</div>
   <div class="bubble-row bubble-icons">
     <a href="tel:8888888888" title="Phone">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-        <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.92 21 3 13.08 3 3.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.27 1.11l-2.37 2.3z"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.92 21 3 13.08 3 3.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.27 1.11l-2.37 2.3z"/></svg>
     </a>
     <a href="mailto:contact@trident.com" title="Email">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24">
-        <path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16z"/>
-      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16z"/></svg>
     </a>
   </div>
 </div>
