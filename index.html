@@ -39,6 +39,7 @@
       border-radius: 5px;
       transition: background 0.3s;
       text-transform: uppercase;
+      cursor: pointer;
     }
 
     header a:hover {
@@ -54,6 +55,9 @@
       text-align: center;
       padding: 3em 2em;
     }
+
+    section { display: none; max-width: 900px; }
+    section.active { display: block; }
 
     h1 {
       font-size: 3em;
@@ -94,23 +98,50 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
+
+    .contact-info {
+      font-size: 1.2em;
+      margin: 0.5em 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="contact.html">Contact</a>
+    <a onclick="showPage('home')">Home</a>
+    <a onclick="showPage('about')">About</a>
+    <a onclick="showPage('contact')">Contact</a>
   </header>
 
   <main>
-    <h1>TRIDENT</h1>
-    <p>JOIN TRIDENT. CONNECT WITH ELITE OPPORTUNITIES. ACHIEVE YOUR MISSION.</p>
-    <a href="about.html" class="signup-button">Learn More / Sign Up</a>
+    <section id="home" class="active">
+      <h1>TRIDENT</h1>
+      <p>JOIN TRIDENT. CONNECT WITH ELITE OPPORTUNITIES. ACHIEVE YOUR MISSION.</p>
+      <a class="signup-button" onclick="showPage('about')">Learn More / Sign Up</a>
+    </section>
+
+    <section id="about">
+      <h1>About Trident</h1>
+      <p>TRIDENT PROVIDES TOP TALENT TO LEADING ORGANIZATIONS. PROFESSIONAL. RELIABLE. EFFECTIVE.</p>
+    </section>
+
+    <section id="contact">
+      <h1>Contact</h1>
+      <p class="contact-info"><strong>Carson Ells</strong>: 888-888-8888</p>
+      <p class="contact-info"><strong>Bryce Matthews</strong>: 888-888-8888</p>
+    </section>
   </main>
 
   <footer>© 2025 Trident</footer>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
