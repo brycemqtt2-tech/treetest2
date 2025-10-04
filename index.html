@@ -281,13 +281,12 @@ footer {
 </main>
 
 <!-- Contact Bubble -->
-<div class="connect-bubble-expanded" onclick="showPopup()">
+<div class="connect-bubble-expanded" onclick="togglePopup()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
 <!-- Pop-up Box -->
 <div id="popup-box">
-  <button id="popup-close" onclick="closePopup()">×</button>
   <div class="popup-columns">
     <div class="popup-left">
       <h2>Email</h2>
@@ -305,33 +304,27 @@ footer {
 
 <script>
 function showPage(pageId){
-  document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+  document.querySelectorAll('section').forEach(sec=>sec.classList.remove('active'));
   document.getElementById(pageId).classList.add('active');
   window.scrollTo(0,0);
 }
 
-function showPopup() {
+function togglePopup() {
   const popup = document.getElementById('popup-box');
-  popup.style.display = 'flex';
-  popup.style.height = '0'; // start collapsed
+  const content = popup.querySelector('.popup-columns');
 
-  setTimeout(() => {
-    popup.style.height = '480px'; // grows upward from the bottom of the popup
-  }, 10);
-
-  setTimeout(() => {
-    popup.querySelector('.popup-columns').style.opacity = 1;
-  }, 250);
-}
-
-function closePopup() {
-  const popup = document.getElementById('popup-box');
-  popup.querySelector('.popup-columns').style.opacity = 0;
-  popup.style.height = '0';
-
-  setTimeout(() => {
-    popup.style.display = 'none';
-  }, 250);
+  if (popup.style.display === 'flex') {
+    // Close
+    content.style.opacity = 0;
+    popup.style.height = '0';
+    setTimeout(() => { popup.style.display = 'none'; }, 250);
+  } else {
+    // Open
+    popup.style.display = 'flex';
+    popup.style.height = '0';
+    setTimeout(() => { popup.style.height = '480px'; }, 10);
+    setTimeout(() => { content.style.opacity = 1; }, 250);
+  }
 }
 
 </script>
