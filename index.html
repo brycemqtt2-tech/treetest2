@@ -188,32 +188,36 @@ footer {
   text-align: center;
 }
 
-/* Ripple overlay / Full contact page */
+/* Static expanding overlay */
 #ripple-overlay {
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  border-radius: 50%; /* starts circular */
-  pointer-events: none;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: black;
+  transform: scale(0);
+  transform-origin: center;
   z-index: 2000;
-  background: white;
-  opacity: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: border-radius 0.8s ease, opacity 0.8s ease, background 1s ease;
+  transition: transform 0.5s ease-out;
+  overflow: hidden;
 }
 
 /* When overlay is active */
 #ripple-overlay.show {
-  border-radius: 0; /* becomes full screen */
-  pointer-events: auto;
-  opacity: 1;
-  background: black;
+  transform: scale(50); /* covers screen */
 }
 
+/* Contact columns inside overlay */
 .contact-columns {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   width: 80%;
   max-width: 900px;
@@ -223,7 +227,7 @@ footer {
   font-weight: 700;
   text-transform: uppercase;
   opacity: 0;
-  transition: opacity 0.5s 0.8s; /* fade in after overlay */
+  transition: opacity 0.5s 0.5s; /* fade in after expansion */
 }
 
 #ripple-overlay.show .contact-columns {
@@ -278,7 +282,7 @@ footer {
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Ripple Overlay / Full contact page -->
+<!-- Static Expanding Overlay -->
 <div id="ripple-overlay">
   <div class="contact-columns">
     <div class="contact-left">
@@ -301,7 +305,7 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-// Ripple transition for full-screen contact page
+// Static expanding overlay
 function rippleTransition() {
   const overlay = document.getElementById('ripple-overlay');
   overlay.classList.add('show');
