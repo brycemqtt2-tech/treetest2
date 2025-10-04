@@ -111,8 +111,6 @@ section.active {
   background-color: rgba(0,0,0,0.6);
   z-index: 0;
 }
-
-/* Bottom fade overlay */
 #home::after {
   content: "";
   position: absolute;
@@ -156,35 +154,52 @@ footer {
   text-transform:uppercase;
 }
 
-/* Contact Overlay */
-#square-overlay {
+/* Contact Bubble */
+.connect-bubble-expanded {
   position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(16, 1fr);
-  grid-template-rows: repeat(16, 1fr);
-  gap: 2px;
-  z-index: 2000;
-  pointer-events: none;
+  bottom: 20px;
+  right: 20px;
+  width: 160px;
+  height: 50px;
+  background: rgba(0,0,0,0.7);
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight:700;
+  text-transform:uppercase;
+  cursor:pointer;
+  z-index: 1000;
+  border: 1px solid rgba(255,255,255,0.3);
 }
 
+/* Square Overlay */
+#square-overlay {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 160px;
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(8,1fr);
+  grid-template-rows: repeat(4,1fr);
+  gap:2px;
+  z-index: 2000;
+  pointer-events:none;
+}
 #square-overlay .square {
-  background: black;
-  width: 100%;
-  height: 100%;
+  background:black;
+  width:100%;
+  height:100%;
   transform: scale(0);
   transform-origin: bottom right;
 }
-
 #square-overlay.show .square {
-  animation: expandSquare 0.6s forwards;
+  animation: expandSquare 0.5s forwards;
 }
-
 @keyframes expandSquare {
-  to { transform: scale(1); }
+  to { transform: scale(50); }
 }
 
 /* Contact Columns */
@@ -229,7 +244,6 @@ footer {
   cursor: pointer;
   z-index: 2200;
 }
-
 #return-btn.active {
   display: block;
 }
@@ -271,12 +285,12 @@ footer {
 </section>
 </main>
 
-<!-- Contact Bubble -->
+<!-- Bubble -->
 <div class="connect-bubble-expanded" onclick="openSquares()">
-  <div class="bubble-row contact-label">Get In Touch</div>
+  Get In Touch
 </div>
 
-<!-- Square overlay -->
+<!-- Overlay -->
 <div id="square-overlay"></div>
 
 <!-- Contact Columns -->
@@ -303,32 +317,40 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function openSquares() {
+function openSquares(){
   const overlay = document.getElementById('square-overlay');
   const columns = document.getElementById('contact-columns');
   const returnBtn = document.getElementById('return-btn');
-  
+
   overlay.innerHTML = '';
-  const rows = 16;
-  const cols = 16;
-  for (let i = 0; i < rows*cols; i++){
+  const rows = 4;
+  const cols = 8;
+  for(let i=0;i<rows*cols;i++){
     const div = document.createElement('div');
     div.classList.add('square');
-    const row = Math.floor(i / cols);
-    const col = i % cols;
+    const row = Math.floor(i/cols);
+    const col = i%cols;
     const delay = ((rows-1-row)+(cols-1-col))*0.02;
     div.style.animationDelay = `${delay}s`;
     overlay.appendChild(div);
   }
   overlay.classList.add('show');
-  columns.classList.add('active');
-  returnBtn.classList.add('active');
+
+  // Show contact columns and return button after animation
+  setTimeout(()=>{
+    columns.classList.add('active');
+    returnBtn.classList.add('active');
+  }, 500);
 }
 
-function closeSquares() {
-  document.getElementById('square-overlay').classList.remove('show');
-  document.getElementById('contact-columns').classList.remove('active');
-  document.getElementById('return-btn').classList.remove('active');
+function closeSquares(){
+  const overlay = document.getElementById('square-overlay');
+  const columns = document.getElementById('contact-columns');
+  const returnBtn = document.getElementById('return-btn');
+
+  overlay.classList.remove('show');
+  columns.classList.remove('active');
+  returnBtn.classList.remove('active');
 }
 </script>
 
