@@ -346,25 +346,24 @@ function showPage(pageId){
 function showPopup() {
   const popup = document.getElementById('popup-box');
   popup.style.display = 'flex';
-  
-  // select all slices
+
   const slices = popup.querySelectorAll('.slice');
   slices.forEach((slice, index) => {
-    slice.style.animationDelay = `${index * 0.02}s`; // stagger quickly
-    slice.classList.add('show');
+    slice.classList.remove('show'); // reset
+    setTimeout(() => {
+      slice.classList.add('show'); // staggered animation
+    }, index * 60); // 60ms per slice, adjust speed
   });
 
-  // fade in content after slices finish
   setTimeout(() => {
     popup.querySelector('.popup-columns').style.opacity = 1;
-  }, 0.08 * slices.length * 1000); // 0.08s per slice * number of slices
+  }, slices.length * 60);
 }
 
 function closePopup() {
   const popup = document.getElementById('popup-box');
   popup.querySelector('.popup-columns').style.opacity = 0;
 
-  // reset slices
   popup.querySelectorAll('.slice').forEach(slice => {
     slice.classList.remove('show');
     slice.style.height = '0';
@@ -372,8 +371,9 @@ function closePopup() {
 
   setTimeout(() => {
     popup.style.display = 'none';
-  }, 50); // small delay to let reset happen
+  }, 50);
 }
+
 </script>
 
 </body>
