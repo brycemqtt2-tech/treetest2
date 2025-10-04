@@ -99,6 +99,11 @@
       font-size: 0.9em;
       color: #c0c0c0;
     }
+
+    .contact-info {
+      font-size: 1.1em;
+      margin: 0.5em 0;
+    }
   </style>
 </head>
 <body>
@@ -109,6 +114,7 @@
     </div>
     <div class="right">
       <a href="#" onclick="showPage('about')">About</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
     </div>
   </header>
 
@@ -123,6 +129,12 @@
       <h1>About</h1>
       <p>Our platform connects tree service professionals with business opportunities and clients.</p>
     </section>
+
+    <section id="contact">
+      <h1>Contact</h1>
+      <p class="contact-info"><strong>Carson Ells</strong>: 888-888-8888</p>
+      <p class="contact-info"><strong>Bryce Matthews</strong>: 888-888-8888</p>
+    </section>
   </main>
 
   <footer>© 2025 Tree Services Platform</footer>
@@ -132,7 +144,7 @@
     function showPage(pageId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-      arrow.style.display = (pageId === 'about') ? 'inline' : 'none';
+      arrow.style.display = (pageId === 'about' || pageId === 'contact') ? 'inline' : 'none';
     }
   </script>
 </body>
