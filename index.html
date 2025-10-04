@@ -33,6 +33,7 @@
     header span {
       font-size: 1.8em;
       font-weight: 900;
+      cursor: pointer;
     }
 
     header a {
@@ -72,7 +73,14 @@
       color: white;
     }
 
-    section.active { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; }
+    section.active { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+      position: relative; 
+    }
 
     /* Home section with submarine background */
     #home {
@@ -146,7 +154,7 @@
 <body>
 
   <header>
-    <span>TRIDENT</span>
+    <span onclick="showPage('home')">TRIDENT</span>
     <a style="position:absolute; right:2em;" onclick="showPage('about')">About</a>
     <a style="position:absolute; right:8em;" onclick="showPage('contact')">Contact</a>
   </header>
