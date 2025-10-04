@@ -60,13 +60,18 @@
       padding: 0.5em;
       font-size: 0.9em;
     }
+
+    .arrow {
+      font-size: 1.3em;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <header>
     <div class="left">
       <span style="font-size: 1.3em; font-weight: bold;">My Simple Website</span>
-      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" id="homeButton" onclick="showPage('home')">Home</a>
     </div>
     <div class="right">
       <a href="#" onclick="showPage('about')">About</a>
@@ -91,6 +96,13 @@
     function showPage(pageId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
+
+      const homeBtn = document.getElementById('homeButton');
+      if (pageId === 'about') {
+        homeBtn.innerHTML = '←';
+      } else {
+        homeBtn.innerHTML = 'Home';
+      }
     }
   </script>
 </body>
