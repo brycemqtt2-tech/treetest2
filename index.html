@@ -21,28 +21,33 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1em 2em;
-      font-size: 1.2em;
+      padding: 1.5em 2em;
+      font-size: 1.5em;
       box-shadow: 0 3px 6px rgba(0,0,0,0.3);
       text-transform: uppercase;
-      letter-spacing: 1px;
-      gap: 2em;
+      letter-spacing: 2px;
+      position: relative;
+    }
+
+    header span {
+      font-size: 1.8em;
+      font-weight: 900;
     }
 
     header a {
       color: #f0f0f0;
       text-decoration: none;
       font-weight: 700;
-      background-color: rgba(0, 60, 120, 0.7);
-      padding: 0.5em 1em;
-      border-radius: 5px;
+      padding: 0.3em 0.8em;
+      border-radius: 4px;
       transition: background 0.3s;
       text-transform: uppercase;
-      cursor: pointer;
+      font-size: 0.9em;
+      background-color: transparent;
     }
 
     header a:hover {
-      background-color: rgba(0, 120, 200, 0.8);
+      background-color: rgba(255,255,255,0.1);
     }
 
     main {
@@ -67,31 +72,31 @@
       color: white;
     }
 
-    /* Overlay to improve text readability */
+    /* Overlay to improve text readability and blend borders */
     #home::before {
       content: "";
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0,0,0,0.55);
       z-index: 0;
     }
 
     #home > * { position: relative; z-index: 1; }
 
     h1 {
-      font-size: 3em;
+      font-size: 4em;
       margin-bottom: 1em;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1.5em;
       line-height: 1.5em;
       margin-bottom: 2em;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: 1px;
     }
 
     .signup-button {
@@ -102,7 +107,7 @@
       padding: 1em 2em;
       border-radius: 5px;
       font-weight: 700;
-      font-size: 1.1em;
+      font-size: 1.2em;
       transition: background 0.3s;
       text-transform: uppercase;
     }
@@ -113,7 +118,7 @@
       background-color: rgba(0, 25, 75, 0.95);
       text-align: center;
       padding: 1em;
-      font-size: 0.9em;
+      font-size: 1em;
       color: #c0c0c0;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -130,9 +135,9 @@
 <body>
 
   <header>
-    <a onclick="showPage('home')">Home</a>
-    <a onclick="showPage('about')">About</a>
-    <a onclick="showPage('contact')">Contact</a>
+    <span>TRIDENT</span>
+    <a style="position:absolute; right:2em;" onclick="showPage('about')">About</a>
+    <a style="position:absolute; right:8em;" onclick="showPage('contact')">Contact</a>
   </header>
 
   <main>
