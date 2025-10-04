@@ -28,6 +28,7 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       position: relative;
+      height: 80px; /* fixed header height */
     }
 
     header a {
@@ -48,9 +49,10 @@
       background-color: rgba(255,255,255,0.1);
     }
 
-    /* Big, centered logo */
+    /* Stretched logo that respects header height */
     header .logo {
-      height: 200px;      /* adjust size */
+      max-height: 100%;    /* fits within header height */
+      width: auto;         /* stretches horizontally */
       cursor: pointer;
       display: block;
       margin: 0 auto;
@@ -157,7 +159,7 @@
 <body>
 
   <header>
-    <!-- Big logo -->
+    <!-- Stretched logo -->
     <img src="images/trident.png" alt="Trident Logo" class="logo" onclick="showPage('home')">
     <a style="right:2em;" onclick="showPage('about')">About</a>
     <a style="right:8em;" onclick="showPage('contact')">Contact</a>
@@ -165,7 +167,7 @@
 
   <main>
     <section id="home" class="active">
-      <!-- Removed TRIDENT h1, kept sentences -->
+      <!-- Keep the three sentences -->
       <p>JOIN TRIDENT. CONNECT WITH ELITE OPPORTUNITIES. ACHIEVE YOUR MISSION.</p>
       <a class="signup-button" onclick="showPage('about')">Learn More / Sign Up</a>
     </section>
