@@ -188,7 +188,7 @@ footer {
   text-align: center;
 }
 
-/* Full-page overlay expanding from bottom-right (starts invisible) */
+/* Full-page overlay expanding from bottom-right */
 #ripple-overlay {
   position: fixed;
   bottom: 20px;
@@ -233,6 +233,27 @@ footer {
 }
 
 #ripple-overlay.show .contact-columns {
+  opacity: 1;
+}
+
+/* Return button */
+#return-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-weight: 700;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: 2100;
+}
+
+#ripple-overlay.show #return-btn {
   opacity: 1;
 }
 </style>
@@ -280,6 +301,7 @@ footer {
 
 <!-- Full-page overlay -->
 <div id="ripple-overlay">
+  <button id="return-btn" onclick="closeOverlay()">Return</button>
   <div class="contact-columns">
     <div class="contact-left">
       <h2>Email</h2>
@@ -304,6 +326,11 @@ function showPage(pageId){
 function rippleTransition() {
   const overlay = document.getElementById('ripple-overlay');
   overlay.classList.add('show');
+}
+
+function closeOverlay() {
+  const overlay = document.getElementById('ripple-overlay');
+  overlay.classList.remove('show');
 }
 </script>
 
