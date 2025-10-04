@@ -9,7 +9,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       color: #f0f0f0;
-      background: linear-gradient(to bottom, #0b3d0b, #2b5d2b);
+      background: linear-gradient(to bottom, #0b3d0b, #1a2d1a);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -61,23 +61,31 @@
       padding: 2em;
     }
 
-    section { display: none; max-width: 800px; }
+    section { display: none; max-width: 900px; }
     section.active { display: block; }
 
-    h1 {
-      margin-bottom: 0.5em;
-    }
-
-    p {
-      font-size: 1.1em;
-      line-height: 1.6em;
-    }
+    h1 { margin-bottom: 0.5em; }
+    p { font-size: 1.1em; line-height: 1.6em; }
 
     .hero-image {
       width: 100%;
       max-width: 700px;
       border-radius: 10px;
       margin: 1em 0;
+    }
+
+    .image-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1em;
+      margin-top: 1em;
+    }
+
+    .image-row img {
+      width: 100%;
+      max-width: 280px;
+      border-radius: 10px;
     }
 
     .signup-button {
@@ -117,7 +125,7 @@
     <section id="home" class="active">
       <h1>Welcome to Tree Services Signup</h1>
       <p>Professional tree climbers and business owners, sign up to grow your network and find clients.</p>
-      <img src="https://images.unsplash.com/photo-1608342077384-8578d3919b65?auto=format&fit=crop&w=700&q=60" alt="Tree climber working" class="hero-image">
+      <img src="images/tree-climber.jpg" alt="Tree climber working" class="hero-image">
       <a href="#" class="signup-button" onclick="showPage('about')">Learn More / Sign Up</a>
     </section>
 
@@ -125,7 +133,11 @@
       <h1>About Tree Services</h1>
       <p>We connect professional tree climbers with business owners looking for tree care services.  
       Our platform helps you find jobs, network, and grow your business efficiently.</p>
-      <img src="https://images.unsplash.com/photo-1599409217028-53ed6cbba166?auto=format&fit=crop&w=700&q=60" alt="Tree service team" class="hero-image">
+      <div class="image-row">
+        <img src="images/tree-team.jpg" alt="Tree service team">
+        <img src="images/tree-equipment.jpg" alt="Tree equipment">
+        <img src="images/tree-trimming.jpg" alt="Tree trimming in action">
+      </div>
     </section>
   </main>
 
@@ -133,11 +145,9 @@
 
   <script>
     const arrow = document.getElementById('arrow');
-
     function showPage(pageId) {
       document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-
       arrow.style.display = (pageId === 'about') ? 'inline' : 'none';
     }
   </script>
