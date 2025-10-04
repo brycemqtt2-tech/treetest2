@@ -34,78 +34,76 @@ footer{background:rgba(5,10,25,.95);text-align:center;padding:1em;font-size:1em;
   right: 20px;
   background: rgba(0,0,0,.6);
   color: white;
-  width: 50px;          
+  width: 50px;
   height: 50px;
-  border-radius: 50%;   
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0,0,0,.5);
   z-index: 1000;
-  flex-direction: row;
   overflow: hidden;
   backdrop-filter: blur(5px);
-  transition: width .4s, padding .4s, border-radius .4s;
+  transition: width 0.4s, padding 0.4s, border-radius 0.4s;
 }
 
-/* Bubble label - visible inside circle initially */
+/* Bubble label always visible inside the circle */
 .connect-bubble .bubble-label {
   font-weight: 700;
   text-transform: uppercase;
-  font-size: .9em;
+  font-size: 0.9em;
   white-space: nowrap;
-  flex-shrink: 0;
-  transition: opacity .3s ease, transform .3s ease;
-  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1; /* always visible */
+  pointer-events: none;
 }
 
 /* Bubble options hidden initially */
 .connect-bubble .bubble-options {
   display: flex;
-  flex-direction: row;
-  gap: .5em;
+  gap: 0.5em;
   margin-left: 10px;
   opacity: 0;
   transform: translateX(20px);
-  pointer-events: none;   
-  transition: opacity .3s ease, transform .3s ease;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover - expand bubble */
+/* Expand bubble on hover */
 .connect-bubble:hover {
-  width: 250px;          
+  width: 250px;
   padding: 1em;
-  border-radius: 25px;   
+  border-radius: 25px;
 }
 
 .connect-bubble:hover .bubble-label {
-  opacity: 0;             
+  opacity: 0;
   transform: translateX(-20px);
 }
 
 .connect-bubble:hover .bubble-options {
-  opacity: 1;             
+  opacity: 1;
   transform: translateX(0);
-  pointer-events: auto;   
+  pointer-events: auto;
 }
 
 /* Bubble options links */
 .connect-bubble .bubble-options a {
   color: #f0f0f0;
   text-decoration: none;
-  font-size: .9em;
+  font-size: 0.9em;
   display: flex;
   align-items: center;
-  gap: .3em;
-  padding: .3em .6em;
+  gap: 0.3em;
+  padding: 0.3em 0.6em;
   border-radius: 8px;
-  background: rgba(255,255,255,.1);
-  transition: background .3s, transform .2s;
+  background: rgba(255,255,255,0.1);
+  transition: background 0.3s, transform 0.2s;
 }
 
 .connect-bubble .bubble-options a:hover {
-  background: rgba(255,255,255,.2);
+  background: rgba(255,255,255,0.2);
   transform: translateX(5px);
 }
 </style>
