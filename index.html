@@ -24,7 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 1.5px solid gold; /* gold border between header and image */
+  border-bottom: 2px solid gold;
 }
 
 .logo-container {
@@ -157,6 +157,7 @@ footer {
   font-size:1em;
   color:#c0c0c0;
   text-transform:uppercase;
+  border-top: 2px solid gold;
 }
 
 /* Contact Bubble */
@@ -175,7 +176,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid gold; /* restored gold border */
+  border: 2px solid gold;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -189,34 +190,54 @@ footer {
   text-align: center;
 }
 
-/* Pop-up contact box */
-.contact-popup {
+/* Pop-up Box (grows from bubble) */
+#popup-box {
   position: fixed;
-  bottom: 70px;
+  bottom: 80px; /* above bubble */
   right: 20px;
-  width: 400px;
-  height: 300px;
-  background: rgba(255,255,255,0.1);
+  width: 480px; /* wider */
+  height: 480px; /* taller */
+  background: rgba(255,255,255,0.1); /* translucent */
   backdrop-filter: blur(10px);
-  display: none;
-  flex-direction: row;
-  z-index: 1500;
-  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: none;
+  transform: scale(0);
+  transform-origin: bottom right;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  opacity: 0;
+  z-index: 1100;
+}
+
+#popup-box.show {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.popup-columns {
+  display: flex;
+  width: 90%;
+  height: 90%;
+}
+
+.popup-left, .popup-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: white;
+  font-size: 1.5em;
+  font-weight: 700;
+  text-transform: uppercase;
 }
-.contact-popup .column {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  font-weight:700;
-  text-transform:uppercase;
-}
-.contact-popup .divider {
-  width:2px;
+
+.popup-divider {
+  width: 2px;
   background: gold;
-  margin:0 10px;
+  margin: 0 10px;
 }
 </style>
 </head>
@@ -257,20 +278,22 @@ footer {
 </main>
 
 <!-- Contact Bubble -->
-<div class="connect-bubble-expanded" onclick="togglePopup()">
+<div class="connect-bubble-expanded" onclick="showPopup()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Pop-up Contact Box -->
-<div class="contact-popup" id="contactPopup">
-  <div class="column">
-    <h2>Email</h2>
-    <p>contact@trident.com</p>
-  </div>
-  <div class="divider"></div>
-  <div class="column">
-    <h2>Phone</h2>
-    <p>888-888-8888</p>
+<!-- Pop-up Box -->
+<div id="popup-box">
+  <div class="popup-columns">
+    <div class="popup-left">
+      <h2>Email</h2>
+      <p>contact@trident.com</p>
+    </div>
+    <div class="popup-divider"></div>
+    <div class="popup-right">
+      <h2>Phone</h2>
+      <p>888-888-8888</p>
+    </div>
   </div>
 </div>
 
@@ -283,13 +306,9 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function togglePopup() {
-  const popup = document.getElementById('contactPopup');
-  if (popup.style.display === 'flex') {
-    popup.style.display = 'none';
-  } else {
-    popup.style.display = 'flex';
-  }
+function showPopup() {
+  const popup = document.getElementById('popup-box');
+  popup.classList.add('show');
 }
 </script>
 
