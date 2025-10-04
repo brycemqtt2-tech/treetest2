@@ -104,7 +104,6 @@ section.active {
   background-repeat: no-repeat;
 }
 
-/* Subtle black overlay */
 #home::before {
   content: "";
   position: absolute;
@@ -114,7 +113,6 @@ section.active {
   z-index: 0;
 }
 
-/* Bottom fade overlay */
 #home::after {
   content: "";
   position: absolute;
@@ -127,7 +125,6 @@ section.active {
   pointer-events: none;
 }
 
-/* Homepage text stacked bottom-left */
 .home-text {
   position: absolute;
   bottom: 40px;
@@ -188,72 +185,56 @@ footer {
   text-align: center;
 }
 
-/* Full-page overlay expanding from bottom-right */
-#ripple-overlay {
+/* Popup Contact Box */
+#contact-popup {
   position: fixed;
-  bottom: 20px;
+  bottom: 90px;
   right: 20px;
-  width: 0;
-  height: 0;
-  background: black;
-  z-index: 2000;
-  clip-path: circle(0 at bottom right);
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: clip-path 0.8s ease-out, width 0s, height 0s;
-}
-
-/* When active, cover whole page */
-#ripple-overlay.show {
-  bottom:0;
-  right:0;
-  width:100vw;
-  height:100vh;
-  clip-path: circle(150vw at bottom right);
-}
-
-/* Contact columns inside overlay */
-.contact-columns {
-  opacity: 0;
-  transition: opacity 0.5s 0.8s;
-  width: 80%;
-  max-width: 900px;
-  display: flex;
-  justify-content: space-between;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width: 260px;
+  background: rgba(0,0,0,0.85);
+  border: 1.5px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  padding: 20px;
   color: white;
-  font-size: 1.5em;
-  font-weight: 700;
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  z-index: 1200;
+  display: none;
+}
+#contact-popup.show {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#contact-popup h2 {
+  font-size: 1.2em;
+  margin: 0 0 0.3em 0;
   text-transform: uppercase;
 }
-
-#ripple-overlay.show .contact-columns {
-  opacity: 1;
+#contact-popup p {
+  margin: 0 0 0.8em 0;
+  font-size: 0.95em;
+  font-weight: 500;
 }
 
-/* Minimalistic X Return button */
-#return-btn {
+#close-popup {
   position: absolute;
-  top: 25px;
-  left: 25px;
+  top: 10px;
+  right: 12px;
   background: transparent;
   border: none;
   color: white;
-  font-size: 1.5em;
-  font-weight: 700;
+  font-size: 1.2em;
+  font-weight: bold;
   cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: 2100;
+  transition: color 0.2s;
 }
-
-#ripple-overlay.show #return-btn {
-  opacity: 1;
+#close-popup:hover {
+  color: #f0c040;
 }
 </style>
 </head>
@@ -285,32 +266,20 @@ footer {
 <h1>About Trident</h1>
 <p>TRIDENT PROVIDES TOP TALENT TO LEADING ORGANIZATIONS. PROFESSIONAL. RELIABLE. EFFECTIVE.</p>
 </section>
-
-<section id="contact">
-<h1>Contact</h1>
-<p class="contact-info"><strong>Carson Ells</strong>: 888-888-8888</p>
-<p class="contact-info"><strong>Bryce Matthews</strong>: 888-888-8888</p>
-</section>
 </main>
 
 <!-- Contact Bubble -->
-<div class="connect-bubble-expanded" onclick="rippleTransition()">
+<div class="connect-bubble-expanded" onclick="togglePopup()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Full-page overlay -->
-<div id="ripple-overlay">
-  <button id="return-btn" onclick="closeOverlay()">×</button>
-  <div class="contact-columns">
-    <div class="contact-left">
-      <h2>Email</h2>
-      <p>contact@trident.com</p>
-    </div>
-    <div class="contact-right">
-      <h2>Phone</h2>
-      <p>888-888-8888</p>
-    </div>
-  </div>
+<!-- Contact Popup -->
+<div id="contact-popup">
+  <button id="close-popup" onclick="togglePopup()">×</button>
+  <h2>Email</h2>
+  <p>contact@trident.com</p>
+  <h2>Phone</h2>
+  <p>888-888-8888</p>
 </div>
 
 <footer>© 2025 Trident</footer>
@@ -322,14 +291,9 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function rippleTransition() {
-  const overlay = document.getElementById('ripple-overlay');
-  overlay.classList.add('show');
-}
-
-function closeOverlay() {
-  const overlay = document.getElementById('ripple-overlay');
-  overlay.classList.remove('show');
+function togglePopup() {
+  const popup = document.getElementById('contact-popup');
+  popup.classList.toggle('show');
 }
 </script>
 
