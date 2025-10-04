@@ -24,7 +24,6 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 1.5px solid gold; /* thin gold line below header */
 }
 
 .logo-container {
@@ -175,7 +174,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid gold; /* thin gold outline around bubble */
+  border: 1.5px solid rgba(255,255,255,0.25);
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -189,40 +188,34 @@ footer {
   text-align: center;
 }
 
-/* Pop-up Contact Box */
+/* Pop-up Box */
 #popup-box {
-  position: fixed;
-  bottom: 100px;
-  right: 20px;
-  width: 420px;  /* wider */
-  height: 300px; /* taller */
-  background: rgba(173,216,230,0.15); /* baby blue tint */
-  border-radius: 16px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-  display: none;
-  z-index: 1200;
-  backdrop-filter: blur(6px);
-  padding: 25px;
-  color: white;
   display: flex;
   justify-content: space-between;
+  width: 480px;
+  height: 400px;
+  background: rgba(173, 216, 230, 0.9); /* baby blue tint */
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1500;
 }
+
+#popup-box.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 #popup-box .column {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 48%;
 }
-#popup-box h2 {
-  margin:0 0 10px 0;
-  font-size:1.2em;
-  text-transform: uppercase;
-  font-weight: 700;
-}
-#popup-box p {
-  margin:0;
-}
-
 </style>
 </head>
 <body>
@@ -266,7 +259,7 @@ footer {
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Pop-up Contact Box -->
+<!-- Pop-up Box -->
 <div id="popup-box">
   <div class="column">
     <h2>Email</h2>
@@ -289,11 +282,7 @@ function showPage(pageId){
 
 function togglePopup() {
   const popup = document.getElementById('popup-box');
-  if (popup.style.display === 'flex') {
-    popup.style.display = 'none';
-  } else {
-    popup.style.display = 'flex';
-  }
+  popup.classList.toggle('show'); // shows or hides the pop-up
 }
 </script>
 
