@@ -64,6 +64,7 @@ header {
   cursor:pointer;
   margin-left:1em;
 }
+
 .header-links a:hover {
   background:rgba(255,255,255,.1);
 }
@@ -176,7 +177,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid gold;
+  border: 2px solid gold;
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -192,38 +193,38 @@ footer {
 
 /* Pop-up Box */
 .connect-popup {
-  position: absolute;
-  bottom: 80px; /* above the bubble */
-  right: 20px;
-  width: 480px;   /* wider */
-  height: 600px;  /* taller */
-  background: rgba(173, 216, 230, 0.4); /* baby blue with transparency */
-  backdrop-filter: blur(10px); /* blurry effect */
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-  z-index: 1001;
-  display: none; /* shows only on click */
-  flex-direction: row; /* 2 columns */
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  flex-direction: row;
   justify-content: space-between;
-  color: white;
-  font-weight: 700;
-  text-transform: uppercase;
+  align-items: stretch;
+  padding: 30px;
+  display: none; /* hidden initially */
+  position: absolute;
+  bottom: 80px;
+  right: 20px;
+  width: 400px;
+  height: 200px;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+  transform-origin: bottom right; /* pop out from bubble */
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
-.connect-popup .column {
-  flex: 1;
+
+.connect-popup.show {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  transform: scale(1);
+  opacity: 1;
 }
-.connect-popup .column h2 {
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+
+.contact-column {
+  flex: 1;
+  text-align: center;
 }
-.connect-popup .column p {
-  margin:0;
-  font-size:1.2em;
+
+.divider {
+  width: 1px;
+  background: rgba(255,255,255,0.25);
+  margin: 0 20px;
 }
 
 </style>
@@ -265,17 +266,18 @@ footer {
 </main>
 
 <!-- Contact Bubble -->
-<div class="connect-bubble-expanded" onclick="togglePopup()">
+<div class="connect-bubble-expanded" onclick="toggleConnectPopup()">
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
 <!-- Pop-up Box -->
-<div class="connect-popup" id="connectPopup">
-  <div class="column">
+<div id="connect-popup" class="connect-popup">
+  <div class="contact-column">
     <h2>Email</h2>
     <p>contact@trident.com</p>
   </div>
-  <div class="column">
+  <div class="divider"></div>
+  <div class="contact-column">
     <h2>Phone</h2>
     <p>888-888-8888</p>
   </div>
@@ -290,13 +292,9 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function togglePopup() {
-  const popup = document.getElementById('connectPopup');
-  if (popup.style.display === 'flex') {
-    popup.style.display = 'none';
-  } else {
-    popup.style.display = 'flex';
-  }
+function toggleConnectPopup() {
+  const popup = document.getElementById('connect-popup');
+  popup.classList.toggle('show');
 }
 </script>
 
