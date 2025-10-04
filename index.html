@@ -24,7 +24,7 @@ header {
   padding:0 2em;
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
-  border-bottom: 2px solid gold;
+  border-bottom: 1.5px solid gold; /* gold border between header and image */
 }
 
 .logo-container {
@@ -175,7 +175,7 @@ footer {
   align-items: center;
   padding: 15px;
   backdrop-filter: blur(5px);
-  border: 1.5px solid rgba(255,255,255,0.25);
+  border: 1.5px solid gold; /* restored gold border */
   cursor: pointer;
   transition: transform 0.2s;
 }
@@ -189,40 +189,34 @@ footer {
   text-align: center;
 }
 
-/* Pop-up box grows from button */
-.connect-popup {
-  background: rgba(255,255,255,0.1);
-  backdrop-filter: blur(8px);
-  position: absolute;
-  bottom: 80px;
+/* Pop-up contact box */
+.contact-popup {
+  position: fixed;
+  bottom: 70px;
   right: 20px;
-  width: 600px;
-  height: 400px;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: 30px;
+  width: 400px;
+  height: 300px;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(10px);
+  display: none;
   flex-direction: row;
-  border-radius: 0;
-  transform-origin: bottom center;
-  transform: scaleY(0);
-  opacity: 0;
-  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  z-index: 1500;
+  padding: 20px;
+  color: white;
 }
-.connect-popup.show {
-  transform: scaleY(1);
-  opacity: 1;
+.contact-popup .column {
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-weight:700;
+  text-transform:uppercase;
 }
-.connect-popup .column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-right: 1px solid rgba(255,255,255,0.3);
-}
-.connect-popup .column:last-child {
-  border-right: none;
+.contact-popup .divider {
+  width:2px;
+  background: gold;
+  margin:0 10px;
 }
 </style>
 </head>
@@ -267,12 +261,13 @@ footer {
   <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
-<!-- Pop-up Box -->
-<div class="connect-popup" id="popup-box">
+<!-- Pop-up Contact Box -->
+<div class="contact-popup" id="contactPopup">
   <div class="column">
     <h2>Email</h2>
     <p>contact@trident.com</p>
   </div>
+  <div class="divider"></div>
   <div class="column">
     <h2>Phone</h2>
     <p>888-888-8888</p>
@@ -289,8 +284,12 @@ function showPage(pageId){
 }
 
 function togglePopup() {
-  const popup = document.getElementById('popup-box');
-  popup.classList.toggle('show');
+  const popup = document.getElementById('contactPopup');
+  if (popup.style.display === 'flex') {
+    popup.style.display = 'none';
+  } else {
+    popup.style.display = 'flex';
+  }
 }
 </script>
 
