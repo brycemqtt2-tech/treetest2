@@ -190,20 +190,37 @@ footer {
 }
 
 /* Inside #popup-box, remove old animation height */
+/* Pop-up Box */
 #popup-box {
   position: fixed;
-  bottom: 90px;
+  bottom: 20px; /* start near the button */
   right: 20px;
   width: 480px;
-  height: 480px;
+  height: 0; /* collapsed initially */
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(10px);
-  display: none;
+  display: flex;
   flex-direction: column;
   padding: 20px;
   z-index: 1001;
   color: white;
   overflow: hidden;
+  transition: height 0.25s ease-out; /* smooth growth */
+}
+
+/* When showing the box */
+#popup-box.show {
+  height: 480px; /* full expanded height */
+}
+
+/* Pop-up Columns – content hidden initially */
+.popup-columns {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  align-items: flex-start;
+  opacity: 0;
+  transition: opacity 0.2s ease-in;
 }
 
 /* Slice bars */
@@ -346,32 +363,26 @@ function showPage(pageId){
 function showPopup() {
   const popup = document.getElementById('popup-box');
   popup.style.display = 'flex';
+  
+  // trigger growth
+  setTimeout(() => {
+    popup.classList.add('show');
+  }, 10); // tiny delay to let display apply
 
-  const slices = popup.querySelectorAll('.slice');
-  slices.forEach((slice, index) => {
-    slice.classList.remove('show'); // reset
-    setTimeout(() => {
-      slice.classList.add('show'); // staggered animation
-    }, index * 60); // 60ms per slice, adjust speed
-  });
-
+  // fade in content after growth
   setTimeout(() => {
     popup.querySelector('.popup-columns').style.opacity = 1;
-  }, slices.length * 60);
+  }, 250); // matches height transition
 }
 
 function closePopup() {
   const popup = document.getElementById('popup-box');
-  popup.querySelector('.popup-columns').style.opacity = 0;
-
-  popup.querySelectorAll('.slice').forEach(slice => {
-    slice.classList.remove('show');
-    slice.style.height = '0';
-  });
+  popup.querySelector('.popup-columns').style.opacity = 0; // hide content
+  popup.classList.remove('show'); // collapse box
 
   setTimeout(() => {
     popup.style.display = 'none';
-  }, 50);
+  }, 250); // matches transition
 }
 
 </script>
