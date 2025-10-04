@@ -121,11 +121,11 @@ section.active {
   flex-direction: column;
   color: white;
   z-index: 1;
-  line-height: 1.5em;
-  font-size: 1.5em;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  line-height:1.5em;
+  font-size:1.5em;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
 }
 
 #about h1, #contact h1 {
@@ -161,33 +161,11 @@ footer {
   backdrop-filter: blur(5px);
 }
 
-.connect-bubble-expanded .bubble-row {
-  margin: 5px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .connect-bubble-expanded .contact-label {
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.95em;
-}
-
-.connect-bubble-expanded .bubble-icons {
-  gap: 20px;
-}
-
-.connect-bubble-expanded a svg {
-  width: 24px;
-  height: 24px;
-  fill: white;
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-
-.connect-bubble-expanded a:hover svg {
-  transform: scale(1.2);
+  text-align: center;
 }
 </style>
 </head>
@@ -229,15 +207,7 @@ footer {
 
 <!-- Contact Panel -->
 <div class="connect-bubble-expanded">
-  <div class="bubble-row contact-label">Contact</div>
-  <div class="bubble-row bubble-icons">
-    <a href="tel:8888888888" title="Phone">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.27c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.92 21 3 13.08 3 3.5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.35.26 2.67.76 3.88a1 1 0 01-.27 1.11l-2.37 2.3z"/></svg>
-    </a>
-    <a href="mailto:contact@trident.com" title="Email">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 2v.01L12 13 4 6.01V6h16z"/></svg>
-    </a>
-  </div>
+  <div class="bubble-row contact-label">Get In Touch</div>
 </div>
 
 <footer>© 2025 Trident</footer>
