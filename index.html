@@ -15,6 +15,7 @@ body {
   flex-direction:column;
   background:#0a0c12;
 }
+
 header {
   background:rgba(5,10,25,0.95);
   display:flex;
@@ -24,55 +25,25 @@ header {
   height:80px;
   box-shadow:0 3px 6px rgba(0,0,0,0.5);
 }
-.logo-container { display:flex; align-items:center; cursor:pointer }
-.logo-container .title { font-size:2em; font-weight:1000; margin:0; letter-spacing:2px }
-.logo-container .subtitle { display:flex; flex-direction:column; margin-left:15px; font-weight:700; text-transform:capitalize }
-.logo-container .subtitle p { margin:0; font-size:.9em; line-height:1em }
-.header-links a { color:#f0f0f0; text-decoration:none; font-weight:700; padding:.3em .8em; border-radius:4px; transition:background .3s; text-transform:uppercase; font-size:.9em; background:transparent; cursor:pointer; margin-left:1em }
-.header-links a:hover { background:rgba(255,255,255,.1) }
-main {
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  position:relative;
-}
-section {
-  display:none;
-  width:100%;
-  min-height:calc(100vh - 80px);
-  padding:3em 2em;
-  box-sizing:border-box;
-  color:white;
-}
+
+.logo-container { display:flex; align-items:center; cursor:pointer; }
+.logo-container .title { font-size:2em; font-weight:1000; margin:0; letter-spacing:2px; }
+.logo-container .subtitle { display:flex; flex-direction:column; margin-left:15px; font-weight:700; text-transform:capitalize; }
+.logo-container .subtitle p { margin:0; font-size:.9em; line-height:1em; }
+
+.header-links a { color:#f0f0f0; text-decoration:none; font-weight:700; padding:.3em .8em; border-radius:4px; transition:background .3s; text-transform:uppercase; font-size:.9em; background:transparent; cursor:pointer; margin-left:1em; }
+.header-links a:hover { background:rgba(255,255,255,.1); }
+
+main { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; position:relative; }
+
+section { display:none; width:100%; min-height:calc(100vh - 80px); padding:3em 2em; box-sizing:border-box; color:white; }
 section.active { display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-end; text-align:left; position:relative; }
-#home {
-  position: relative;
-  background-image: url('images/submarine.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-#home::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background-color: rgba(0,0,0,0.6);
-  z-index: 0;
-}
-#home::after {
-  content: "";
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%;
-  height: 200px;
-  background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
-  z-index: 1;
-  pointer-events: none;
-}
+
+/* Homepage background */
+#home { position: relative; background-image: url('images/submarine.png'); background-size: cover; background-position: center; background-repeat: no-repeat; }
+#home::before { content: ""; position: absolute; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.6); z-index:0; }
+#home::after { content: ""; position: absolute; bottom:0; left:0; width:100%; height:200px; background: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)); z-index:1; pointer-events:none; }
+
 .home-text {
   position: absolute;
   bottom: 40px;
@@ -87,15 +58,9 @@ section.active { display:flex; flex-direction:column; align-items:flex-start; ju
   text-transform:uppercase;
   letter-spacing:1px;
 }
-#about h1, #contact h1 { margin-bottom:1em; font-size:2.5em; letter-spacing:2px }
-footer {
-  background:rgba(5,10,25,.95);
-  text-align:center;
-  padding:1em;
-  font-size:1em;
-  color:#c0c0c0;
-  text-transform:uppercase;
-}
+
+footer { background:rgba(5,10,25,.95); text-align:center; padding:1em; font-size:1em; color:#c0c0c0; text-transform:uppercase; }
+
 /* Contact Bubble */
 .connect-bubble {
   position: fixed;
@@ -115,63 +80,48 @@ footer {
   z-index: 1000;
   border: 1px solid rgba(255,255,255,0.3);
 }
-/* Overlay squares */
-#square-overlay {
+
+/* Overlay */
+#overlay {
   position: fixed;
   bottom: 20px;
   right: 20px;
   width: 160px;
   height: 50px;
-  display: grid;
-  grid-template-columns: repeat(8,1fr);
-  grid-template-rows: repeat(4,1fr);
-  gap:2px;
+  background: black;
   z-index: 2000;
+  border-radius: 25px;
+  transition: all 0.5s ease-in-out;
   pointer-events:none;
 }
-#square-overlay .square {
-  background:black;
-  width:100%;
-  height:100%;
-  transform: scale(0);
-  transform-origin: bottom right;
-}
-#square-overlay.show .square {
-  animation: expandSquare 0.5s forwards;
-}
-@keyframes expandSquare { to { transform: scale(50); } }
-/* Contact Columns */
-.contact-columns {
-  display: none;
-  position: fixed;
+#overlay.expanded {
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: 2100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 100px;
-  color: white;
+  border-radius: 0;
+}
+
+/* Contact Columns */
+.contact-columns {
+  display: none;
+  position: fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  z-index:2100;
+  justify-content:center;
+  align-items:center;
+  gap:100px;
+  color:white;
 }
 .contact-columns.active { display: flex; }
 .contact-left, .contact-right { display: flex; flex-direction: column; align-items: center; font-size: 1.5em; font-weight: 700; }
+
 /* Return X */
-#return-btn {
-  display: none;
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 2em;
-  font-weight: 700;
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  z-index: 2200;
-}
-#return-btn.active { display: block; }
+#return-btn { display:none; position:fixed; top:20px; left:20px; font-size:2em; font-weight:700; background:transparent; border:none; color:white; cursor:pointer; z-index:2200; }
+#return-btn.active { display:block; }
 </style>
 </head>
 <body>
@@ -205,10 +155,10 @@ footer {
 </main>
 
 <!-- Bubble -->
-<div class="connect-bubble" onclick="openSquares()">Get In Touch</div>
+<div class="connect-bubble" onclick="openOverlay()">Get In Touch</div>
 
 <!-- Overlay -->
-<div id="square-overlay"></div>
+<div id="overlay"></div>
 
 <!-- Contact Columns -->
 <div class="contact-columns" id="contact-columns">
@@ -223,7 +173,7 @@ footer {
 </div>
 
 <!-- Return X -->
-<button id="return-btn" onclick="closeSquares()">×</button>
+<button id="return-btn" onclick="closeOverlay()">×</button>
 
 <footer>© 2025 Trident</footer>
 
@@ -234,24 +184,12 @@ function showPage(pageId){
   window.scrollTo(0,0);
 }
 
-function openSquares(){
-  const overlay = document.getElementById('square-overlay');
+function openOverlay(){
+  const overlay = document.getElementById('overlay');
   const columns = document.getElementById('contact-columns');
   const returnBtn = document.getElementById('return-btn');
 
-  overlay.innerHTML = '';
-  const rows = 4;
-  const cols = 8;
-  for(let i=0;i<rows*cols;i++){
-    const div = document.createElement('div');
-    div.classList.add('square');
-    const row = Math.floor(i/cols);
-    const col = i%cols;
-    const delay = ((rows-1-row)+(cols-1-col))*0.02;
-    div.style.animationDelay = `${delay}s`;
-    overlay.appendChild(div);
-  }
-  overlay.classList.add('show');
+  overlay.classList.add('expanded');
 
   setTimeout(()=>{
     columns.classList.add('active');
@@ -259,12 +197,12 @@ function openSquares(){
   }, 500);
 }
 
-function closeSquares(){
-  const overlay = document.getElementById('square-overlay');
+function closeOverlay(){
+  const overlay = document.getElementById('overlay');
   const columns = document.getElementById('contact-columns');
   const returnBtn = document.getElementById('return-btn');
 
-  overlay.classList.remove('show');
+  overlay.classList.remove('expanded');
   columns.classList.remove('active');
   returnBtn.classList.remove('active');
 }
