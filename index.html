@@ -311,18 +311,12 @@ function showPage(pageId){
 }
 
 function showPopup() {
-  const button = document.querySelector('.connect-bubble-expanded');
   const popup = document.getElementById('popup-box');
-
-  // get button position
-  const rect = button.getBoundingClientRect();
-  popup.style.top = rect.top + 'px';  // anchor to button
-  popup.style.right = (window.innerWidth - rect.right) + 'px'; // keep horizontal alignment
-  popup.style.height = '0';
   popup.style.display = 'flex';
+  popup.style.height = '0'; // start collapsed
 
   setTimeout(() => {
-    popup.style.height = '480px';
+    popup.style.height = '480px'; // grow upward from bottom
   }, 10);
 
   setTimeout(() => {
