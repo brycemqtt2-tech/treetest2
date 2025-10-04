@@ -27,16 +27,16 @@ p{font-size:1.5em;line-height:1.5em;margin-bottom:2em;text-transform:uppercase;l
 footer{background:rgba(5,10,25,.95);text-align:center;padding:1em;font-size:1em;color:#c0c0c0;text-transform:uppercase;letter-spacing:.5px}
 .contact-info{font-size:1.2em;margin:.5em 0;text-transform:uppercase;letter-spacing:.5px}
 
-/* Connect Bubble - circular and expands on hover */
+/* Connect Bubble - circular, expands on hover */
 .connect-bubble {
   position: fixed;
   bottom: 20px;
   right: 20px;
   background: rgba(0,0,0,.6);
   color: white;
-  width: 50px;          /* small circle initially */
+  width: 50px;          
   height: 50px;
-  border-radius: 50%;   /* circular */
+  border-radius: 50%;   
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,7 +49,7 @@ footer{background:rgba(5,10,25,.95);text-align:center;padding:1em;font-size:1em;
   transition: width .4s, padding .4s, border-radius .4s;
 }
 
-/* Bubble label - visible inside circle */
+/* Bubble label - visible inside circle initially */
 .connect-bubble .bubble-label {
   font-weight: 700;
   text-transform: uppercase;
@@ -68,24 +68,26 @@ footer{background:rgba(5,10,25,.95);text-align:center;padding:1em;font-size:1em;
   margin-left: 10px;
   opacity: 0;
   transform: translateX(20px);
+  pointer-events: none;   
   transition: opacity .3s ease, transform .3s ease;
 }
 
 /* Hover - expand bubble */
 .connect-bubble:hover {
-  width: 250px;          /* expand horizontally */
+  width: 250px;          
   padding: 1em;
-  border-radius: 25px;   /* rounded rectangle */
+  border-radius: 25px;   
 }
 
 .connect-bubble:hover .bubble-label {
-  opacity: 0;
+  opacity: 0;             
   transform: translateX(-20px);
 }
 
 .connect-bubble:hover .bubble-options {
-  opacity: 1;
+  opacity: 1;             
   transform: translateX(0);
+  pointer-events: auto;   
 }
 
 /* Bubble options links */
