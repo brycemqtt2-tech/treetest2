@@ -81,25 +81,14 @@ footer { background:rgba(5,10,25,.95); text-align:center; padding:1em; font-size
   border: 1px solid rgba(255,255,255,0.3);
 }
 
-/* Overlay */
+/* Overlay expanding from bubble */
 #overlay {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 160px;
-  height: 50px;
   background: black;
-  z-index: 2000;
   border-radius: 25px;
+  z-index: 2000;
   transition: all 0.5s ease-in-out;
   pointer-events:none;
-}
-#overlay.expanded {
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  border-radius: 0;
 }
 
 /* Contact Columns */
@@ -155,7 +144,7 @@ footer { background:rgba(5,10,25,.95); text-align:center; padding:1em; font-size
 </main>
 
 <!-- Bubble -->
-<div class="connect-bubble" onclick="openOverlay()">Get In Touch</div>
+<div class="connect-bubble" id="connect-bubble" onclick="openOverlay()">Get In Touch</div>
 
 <!-- Overlay -->
 <div id="overlay"></div>
@@ -186,25 +175,55 @@ function showPage(pageId){
 
 function openOverlay(){
   const overlay = document.getElementById('overlay');
+  const bubble = document.getElementById('connect-bubble');
   const columns = document.getElementById('contact-columns');
   const returnBtn = document.getElementById('return-btn');
 
+  // set overlay starting at bubble's position
+  const rect = bubble.getBoundingClientRect();
+  overlay.style.top = rect.top + "px";
+  overlay.style.left = rect.left + "px";
+  overlay.style.width = rect.width + "px";
+  overlay.style.height = rect.height + "px";
+  overlay.style.borderRadius = "25px";
+
+  overlay.style.pointerEvents = "auto";
   overlay.classList.add('expanded');
 
   setTimeout(()=>{
+    overlay.style.top = "0";
+    overlay.style.left = "0";
+    overlay.style.width = "100vw";
+    overlay.style.height = "100vh";
+    overlay.style.borderRadius = "0";
     columns.classList.add('active');
     returnBtn.classList.add('active');
-  }, 500);
+    bubble.style.display = 'none';
+  }, 50);
 }
 
 function closeOverlay(){
   const overlay = document.getElementById('overlay');
+  const bubble = document.getElementById('connect-bubble');
   const columns = document.getElementById('contact-columns');
   const returnBtn = document.getElementById('return-btn');
 
   overlay.classList.remove('expanded');
   columns.classList.remove('active');
   returnBtn.classList.remove('active');
+
+  // shrink overlay back to bubble
+  const rect = bubble.getBoundingClientRect();
+  overlay.style.top = rect.top + "px";
+  overlay.style.left = rect.left + "px";
+  overlay.style.width = rect.width + "px";
+  overlay.style.height = rect.height + "px";
+  overlay.style.borderRadius = "25px";
+
+  setTimeout(()=>{
+    bubble.style.display = 'flex';
+    overlay.style.pointerEvents = "none";
+  }, 500);
 }
 </script>
 
